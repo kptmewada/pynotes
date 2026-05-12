@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Study Notes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>🐍 Python — Complete Study Notes</h1>
+  <p>Questions 1–29 | Fundamentals · Control Flow · Functions · Modules · File Handling</p>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h3>Table of Contents</h3>
+    <ol>
+      <li><a href="#q1">What is Python? Four key features</a></li>
+      <li><a href="#q2">Compiled vs Interpreted languages</a></li>
+      <li><a href="#q3">Dynamically typed language</a></li>
+      <li><a href="#q4">Main data types in Python</a></li>
+      <li><a href="#q5">Type casting — implicit & explicit</a></li>
+      <li><a href="#q6">Keywords in Python</a></li>
+      <li><a href="#q7">if, if-else, and elif statements</a></li>
+      <li><a href="#q8">for loop vs while loop</a></li>
+      <li><a href="#q9">for loop with range()</a></li>
+      <li><a href="#q10">else clause with loops</a></li>
+      <li><a href="#q11">break vs continue statements</a></li>
+      <li><a href="#q12">The pass statement</a></li>
+    </ol>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid #e2e8f0;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:10px;">Part 2 — Functions, Scope, Recursion, Lambda, Modules & Files</div>
+    <ol start="13">
+      <li><a href="#q13">What is a function?</a></li>
+      <li><a href="#q14">Parameters vs Arguments (*args, **kwargs)</a></li>
+      <li><a href="#q15">Fruitful vs Void functions</a></li>
+      <li><a href="#q16">Why indentation is mandatory</a></li>
+      <li><a href="#q17">Variable scope — LEGB rule</a></li>
+      <li><a href="#q18">Local vs Global variables & shadowing</a></li>
+      <li><a href="#q19">The global keyword</a></li>
+      <li><a href="#q20">The nonlocal keyword</a></li>
+      <li><a href="#q21">Recursion vs Iteration</a></li>
+      <li><a href="#q22">Base case & Recursive case</a></li>
+      <li><a href="#q23">Lambda functions</a></li>
+      <li><a href="#q24">Lambda with higher-order functions</a></li>
+      <li><a href="#q25">Modules in Python</a></li>
+      <li><a href="#q26">File opening modes</a></li>
+      <li><a href="#q27">Text mode vs Binary mode</a></li>
+      <li><a href="#q28">The with statement</a></li>
+      <li><a href="#q29">os module key functions</a></li>
+    </ol>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid #e2e8f0;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:10px;">Part 3 — Strings, Tuples, Lists, Dicts &amp; Sets</div>
+    <ol start="30">
+      <li><a href="#q30">Mutable vs immutable data types</a></li>
+      <li><a href="#q31">Ways to declare a string (single, double, triple quotes)</a></li>
+      <li><a href="#q32">String indexing and slicing — negative indices</a></li>
+      <li><a href="#q33">Why input() returns a string — taking int/float input</a></li>
+      <li><a href="#q34">Why strings are immutable</a></li>
+      <li><a href="#q35">Tuple vs list — syntax, mutability, use cases</a></li>
+      <li><a href="#q36">Tuple packing and unpacking</a></li>
+      <li><a href="#q37">Tuples containing mutable objects</a></li>
+      <li><a href="#q38">Lists as mutable sequences — aliasing</a></li>
+      <li><a href="#q39">append() vs extend()</a></li>
+      <li><a href="#q40">Dictionary — hash table &amp; why keys must be immutable</a></li>
+      <li><a href="#q41">Dict access: [] vs get()</a></li>
+      <li><a href="#q42">Dictionary view objects — keys(), values(), items()</a></li>
+      <li><a href="#q43">Sets — mutability, ordering, duplicates</a></li>
+    </ol>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid #e2e8f0;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:10px;">Part 4 — Exceptions, Debugging &amp; Assertions</div>
+    <ol start="44">
+      <li><a href="#q44">Exception vs syntax error</a></li>
+      <li><a href="#q45">Syntax errors, runtime errors, and logical errors</a></li>
+      <li><a href="#q46">Using print() for debugging — and its limitations</a></li>
+      <li><a href="#q47">try-except-else-finally — complete syntax and execution flow</a></li>
+      <li><a href="#q48">The else clause in exception handling</a></li>
+      <li><a href="#q49">The finally block — purpose and guarantees</a></li>
+      <li><a href="#q50">Catching multiple exceptions in one except block</a></li>
+      <li><a href="#q51">Custom exceptions — creating and raising</a></li>
+      <li><a href="#q52">The assert statement — syntax and purpose</a></li>
+      <li><a href="#q53">Assertions vs exception handling — when to use each</a></li>
+    </ol>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid #e2e8f0;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:10px;">Part 5 — Object-Oriented Programming</div>
+    <ol start="54">
+      <li><a href="#q54">What is OOP? Four pillars of OOP in Python</a></li>
+      <li><a href="#q55">Class vs Object — with real-life example</a></li>
+      <li><a href="#q56">Why __init__() is used in Python</a></li>
+      <li><a href="#q57">Inheritance — all types supported in Python</a></li>
+      <li><a href="#q58">super() in inheritance — usage and example</a></li>
+      <li><a href="#q59">Polymorphism — method overriding and duck typing</a></li>
+      <li><a href="#q60">Encapsulation and Information Hiding in Python</a></li>
+      <li><a href="#q61">Name Mangling — syntax, purpose, and why it is used</a></li>
+    </ol>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="card" id="q1">
+    <div class="q-label">Question 1</div>
+    <h2>What is Python? Four features that make it popular</h2>
+    <p><b>Python</b> is a high-level, general-purpose, interpreted programming language created by <b>Guido van Rossum</b> in 1991. It emphasizes code readability and simplicity, enabling developers to write fewer lines of code compared to languages like C++ or Java. Python supports multiple programming paradigms: procedural, object-oriented, and functional.</p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>📖 Simple & Readable Syntax</h4>
+        <p>Python's syntax is close to plain English. There are no unnecessary curly braces or semicolons, making it very easy to read and write, especially for beginners.</p>
+      </div>
+      <div class="feature-item">
+        <h4>🌐 Versatile & Multi-purpose</h4>
+        <p>Used in web development (Django, Flask), data science (NumPy, Pandas), AI/ML (TensorFlow), automation, scientific computing, and more.</p>
+      </div>
+      <div class="feature-item">
+        <h4>📦 Rich Standard Library</h4>
+        <p>Python ships with a large built-in library ("batteries included") plus thousands of third-party packages on PyPI, reducing the need to write code from scratch.</p>
+      </div>
+      <div class="feature-item">
+        <h4>🔁 Interpreted & Interactive</h4>
+        <p>Code runs line-by-line without a separate compilation step. This makes testing and debugging faster, and the REPL allows instant feedback while learning.</p>
+      </div>
+    </div>
+<pre><span class="cm"># Python's simplicity — compare to other languages</span>
+<span class="fn">print</span>(<span class="str">"Hello, World!"</span>)  <span class="cm"># That's all it takes!</span></pre>
+  </div>
+
+  <!-- Q2 -->
+  <div class="card" id="q2">
+    <div class="q-label">Question 2</div>
+    <h2>Compiled vs Interpreted Language — Where does Python stand?</h2>
+    <table>
+      <tr><th>Feature</th><th>Compiled Language</th><th>Interpreted Language</th></tr>
+      <tr><td>How it works</td><td>Entire source code is converted to machine code before execution by a compiler</td><td>Code is translated and executed line-by-line at runtime by an interpreter</td></tr>
+      <tr><td>Speed</td><td>Faster execution (pre-compiled)</td><td>Slower (translation happens at runtime)</td></tr>
+      <tr><td>Error detection</td><td>Errors caught at compile time</td><td>Errors detected only when that line runs</td></tr>
+      <tr><td>Portability</td><td>Platform-specific binaries</td><td>Same code runs anywhere an interpreter exists</td></tr>
+      <tr><td>Examples</td><td>C, C++, Java (to bytecode), Rust</td><td>Python, Ruby, JavaScript, PHP</td></tr>
+    </table>
+    <div class="info-box">
+      <b>Where does Python stand?</b> Python is primarily an <b>interpreted language</b>. When you run a .py file, Python first compiles the source code into an intermediate form called <b>bytecode</b> (.pyc files), which is then executed by the Python Virtual Machine (PVM) — the interpreter. This two-step process means Python is technically <i>compiled to bytecode first, then interpreted</i>, but since this happens transparently and automatically, Python is classified as an interpreted language.
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="card" id="q3">
+    <div class="q-label">Question 3</div>
+    <h2>Dynamically Typed Language — with Python example</h2>
+    <p>In a <b>dynamically typed language</b>, the type of a variable is determined <b>at runtime</b>, not at compile time. You do NOT need to declare the type of a variable when writing code. The same variable can hold values of different data types at different points in the program.</p>
+    <p>This contrasts with <b>statically typed</b> languages (like C, Java) where you must declare the type explicitly (e.g., <code>int x = 5;</code>) and it cannot change.</p>
+<pre><span class="cm"># Python is dynamically typed — no type declaration needed</span>
+x = <span class="num">10</span>
+<span class="fn">print</span>(<span class="fn">type</span>(x))      <span class="out"># &lt;class 'int'&gt;</span>
+
+x = <span class="str">"Hello"</span>
+<span class="fn">print</span>(<span class="fn">type</span>(x))      <span class="out"># &lt;class 'str'&gt;</span>
+
+x = <span class="num">3.14</span>
+<span class="fn">print</span>(<span class="fn">type</span>(x))      <span class="out"># &lt;class 'float'&gt;</span>
+
+x = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+<span class="fn">print</span>(<span class="fn">type</span>(x))      <span class="out"># &lt;class 'list'&gt;</span>
+
+<span class="cm"># The same variable 'x' held int, str, float, and list — perfectly valid!</span></pre>
+    <div class="warn-box">⚠️ While dynamic typing is convenient, it can lead to runtime errors if the type changes unexpectedly. Python 3.5+ supports <b>type hints</b> (e.g., <code>x: int = 5</code>) for readability, but these are not enforced at runtime.</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="card" id="q4">
+    <div class="q-label">Question 4</div>
+    <h2>Main Data Types in Python</h2>
+    <div class="dt-grid">
+      <div class="dt-item">
+        <div class="type">Numeric</div>
+        <div class="name">int</div>
+        <span class="ex">x = 42</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Whole numbers, positive or negative, no decimal.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Numeric</div>
+        <div class="name">float</div>
+        <span class="ex">x = 3.14</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Decimal/real numbers.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Numeric</div>
+        <div class="name">complex</div>
+        <span class="ex">x = 2+3j</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Real + imaginary parts.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Text</div>
+        <div class="name">str</div>
+        <span class="ex">x = "Hi"</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Sequence of characters, immutable.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Boolean</div>
+        <div class="name">bool</div>
+        <span class="ex">x = True</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Either True or False. Subclass of int.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Null</div>
+        <div class="name">NoneType</div>
+        <span class="ex">x = None</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Represents absence of value.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Sequence</div>
+        <div class="name">list</div>
+        <span class="ex">[1, "a", 3]</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Ordered, mutable, allows duplicates.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Sequence</div>
+        <div class="name">tuple</div>
+        <span class="ex">(1, 2, 3)</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Ordered, immutable collection.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Mapping</div>
+        <div class="name">dict</div>
+        <span class="ex">{"k": "v"}</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Key-value pairs, mutable.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Set</div>
+        <div class="name">set</div>
+        <span class="ex">{1, 2, 3}</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Unordered, unique elements.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Set</div>
+        <div class="name">frozenset</div>
+        <span class="ex">frozenset({1})</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Immutable set.</p>
+      </div>
+      <div class="dt-item">
+        <div class="type">Binary</div>
+        <div class="name">bytes</div>
+        <span class="ex">b"hello"</span>
+        <p style="font-size:12px;margin-top:6px;color:#4b5563">Immutable sequence of bytes.</p>
+      </div>
+    </div>
+<pre><span class="cm"># Examples of each main type</span>
+age   = <span class="num">21</span>              <span class="cm"># int</span>
+gpa   = <span class="num">9.5</span>             <span class="cm"># float</span>
+name  = <span class="str">"Alice"</span>         <span class="cm"># str</span>
+flag  = <span class="kw">True</span>            <span class="cm"># bool</span>
+empty = <span class="kw">None</span>            <span class="cm"># NoneType</span>
+marks = [<span class="num">90</span>, <span class="num">85</span>, <span class="num">92</span>]    <span class="cm"># list</span>
+coord = (<span class="num">23.0</span>, <span class="num">72.5</span>)    <span class="cm"># tuple</span>
+info  = {<span class="str">"city"</span>: <span class="str">"Ahmedabad"</span>}  <span class="cm"># dict</span>
+ids   = {<span class="num">101</span>, <span class="num">102</span>, <span class="num">103</span>} <span class="cm"># set</span></pre>
+  </div>
+
+  <!-- Q5 -->
+  <div class="card" id="q5">
+    <div class="q-label">Question 5</div>
+    <h2>Type Casting (Type Conversion) — Implicit & Explicit</h2>
+    <p><b>Type casting</b> (also called type conversion) is the process of converting a value from one data type to another.</p>
+    <hr class="divider">
+    <p><b>1. Implicit Type Casting (Coercion)</b> — Done automatically by Python without any user involvement. Python promotes the smaller/less precise type to the larger/more precise type to avoid data loss.</p>
+<pre><span class="cm"># Implicit: Python converts int → float automatically</span>
+a = <span class="num">5</span>       <span class="cm"># int</span>
+b = <span class="num">2.5</span>     <span class="cm"># float</span>
+result = a + b
+<span class="fn">print</span>(result)          <span class="out"># 7.5</span>
+<span class="fn">print</span>(<span class="fn">type</span>(result))    <span class="out"># &lt;class 'float'&gt;</span>
+
+<span class="cm"># Another example: bool is treated as int</span>
+<span class="fn">print</span>(<span class="kw">True</span> + <span class="num">10</span>)       <span class="out"># 11  (True = 1)</span></pre>
+    <hr class="divider">
+    <p><b>2. Explicit Type Casting</b> — Done manually by the programmer using built-in functions like <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>list()</code>, etc.</p>
+<pre><span class="cm"># int() — converts to integer</span>
+<span class="fn">print</span>(<span class="fn">int</span>(<span class="num">3.9</span>))       <span class="out"># 3  (truncates, does NOT round)</span>
+<span class="fn">print</span>(<span class="fn">int</span>(<span class="str">"25"</span>))     <span class="out"># 25</span>
+
+<span class="cm"># float() — converts to float</span>
+<span class="fn">print</span>(<span class="fn">float</span>(<span class="num">7</span>))      <span class="out"># 7.0</span>
+<span class="fn">print</span>(<span class="fn">float</span>(<span class="str">"3.14"</span>)) <span class="out"># 3.14</span>
+
+<span class="cm"># str() — converts to string</span>
+<span class="fn">print</span>(<span class="fn">str</span>(<span class="num">100</span>))      <span class="out"># "100"</span>
+<span class="fn">print</span>(<span class="fn">str</span>(<span class="num">3.14</span>))     <span class="out"># "3.14"</span>
+
+<span class="cm"># list() and tuple() conversions</span>
+<span class="fn">print</span>(<span class="fn">list</span>((<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>)))  <span class="out"># [1, 2, 3]</span>
+<span class="fn">print</span>(<span class="fn">tuple</span>([<span class="num">4</span>, <span class="num">5</span>]))    <span class="out"># (4, 5)</span></pre>
+    <div class="warn-box">⚠️ Not all conversions are valid. <code>int("Hello")</code> raises a <b>ValueError</b>. Always ensure the value is compatible with the target type.</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="card" id="q6">
+    <div class="q-label">Question 6</div>
+    <h2>Keywords in Python — Why can't they be used as variable names?</h2>
+    <p><b>Keywords</b> are reserved words in Python that have special, predefined meanings in the language's syntax and grammar. They form the building blocks of Python programs — they define structure, control flow, logical operations, etc.</p>
+    <p>Python has <b>35 keywords</b> (as of Python 3.10+):</p>
+    <div style="margin: 10px 0 14px;">
+      <span class="tag">False</span><span class="tag">None</span><span class="tag">True</span>
+      <span class="tag purple">and</span><span class="tag purple">or</span><span class="tag purple">not</span><span class="tag purple">in</span><span class="tag purple">is</span>
+      <span class="tag amber">if</span><span class="tag amber">elif</span><span class="tag amber">else</span>
+      <span class="tag amber">for</span><span class="tag amber">while</span><span class="tag amber">break</span><span class="tag amber">continue</span><span class="tag amber">pass</span>
+      <span class="tag green">def</span><span class="tag green">class</span><span class="tag green">return</span><span class="tag green">lambda</span><span class="tag green">yield</span>
+      <span class="tag red">try</span><span class="tag red">except</span><span class="tag red">finally</span><span class="tag red">raise</span><span class="tag red">with</span>
+      <span class="tag">import</span><span class="tag">from</span><span class="tag">as</span><span class="tag">del</span>
+      <span class="tag">global</span><span class="tag">nonlocal</span><span class="tag">assert</span><span class="tag">async</span><span class="tag">await</span>
+    </div>
+    <p><b>Why can't keywords be used as variable names?</b></p>
+    <ul>
+      <li>The Python interpreter uses keywords to understand the structure and meaning of your code. If a keyword were used as a variable name, the interpreter would get confused about whether it represents a variable or a language construct.</li>
+      <li>For example, <code>if = 5</code> would cause a SyntaxError because the interpreter expects <code>if</code> to be followed by a condition, not an assignment.</li>
+    </ul>
+<pre><span class="cm"># These cause SyntaxError — keywords as variable names</span>
+<span class="cm"># for = 10       → SyntaxError</span>
+<span class="cm"># while = "hi"   → SyntaxError</span>
+<span class="cm"># class = []     → SyntaxError</span>
+
+<span class="cm"># To see all keywords:</span>
+<span class="kw">import</span> keyword
+<span class="fn">print</span>(keyword.kwlist)   <span class="cm"># prints all 35 keywords</span>
+<span class="fn">print</span>(keyword.<span class="fn">iskeyword</span>(<span class="str">"for"</span>))   <span class="out"># True</span></pre>
+  </div>
+
+  <!-- Q7 -->
+  <div class="card" id="q7">
+    <div class="q-label">Question 7</div>
+    <h2>if, if-else, and elif statements</h2>
+
+    <p><b>1. if statement</b> — Executes a block only if the condition is True.</p>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">if</span> condition:
+    <span class="cm"># block executed if condition is True</span></pre>
+    <div class="syntax-label">Real-life example — checking if a student passes</div>
+<pre>marks = <span class="num">55</span>
+<span class="kw">if</span> marks >= <span class="num">35</span>:
+    <span class="fn">print</span>(<span class="str">"You have passed the exam."</span>)
+<span class="out"># Output: You have passed the exam.</span></pre>
+
+    <hr class="divider">
+    <p><b>2. if-else statement</b> — Executes one block if condition is True, another block if False.</p>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">if</span> condition:
+    <span class="cm"># block if True</span>
+<span class="kw">else</span>:
+    <span class="cm"># block if False</span></pre>
+    <div class="syntax-label">Real-life example — ATM withdrawal</div>
+<pre>balance = <span class="num">5000</span>
+amount = <span class="num">3000</span>
+<span class="kw">if</span> amount <= balance:
+    <span class="fn">print</span>(<span class="str">"Withdrawal successful."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Insufficient balance."</span>)
+<span class="out"># Output: Withdrawal successful.</span></pre>
+
+    <hr class="divider">
+    <p><b>3. elif statement</b> — Checks multiple conditions in sequence. Stands for "else if".</p>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">if</span> condition1:
+    <span class="cm"># block if condition1 is True</span>
+<span class="kw">elif</span> condition2:
+    <span class="cm"># block if condition2 is True</span>
+<span class="kw">elif</span> condition3:
+    <span class="cm"># block if condition3 is True</span>
+<span class="kw">else</span>:
+    <span class="cm"># block if all conditions are False</span></pre>
+    <div class="syntax-label">Real-life example — grading system</div>
+<pre>marks = <span class="num">78</span>
+<span class="kw">if</span> marks >= <span class="num">90</span>:
+    grade = <span class="str">"A+"</span>
+<span class="kw">elif</span> marks >= <span class="num">80</span>:
+    grade = <span class="str">"A"</span>
+<span class="kw">elif</span> marks >= <span class="num">70</span>:
+    grade = <span class="str">"B"</span>
+<span class="kw">elif</span> marks >= <span class="num">60</span>:
+    grade = <span class="str">"C"</span>
+<span class="kw">else</span>:
+    grade = <span class="str">"Fail"</span>
+<span class="fn">print</span>(<span class="str">f"Grade: {grade}"</span>)  <span class="out"># Grade: B</span></pre>
+    <div class="info-box">💡 Python evaluates conditions from top to bottom and executes only the <b>first matching block</b>. Once a condition is True, the rest are skipped.</div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="card" id="q8">
+    <div class="q-label">Question 8</div>
+    <h2>for loop vs while loop — differences and when to prefer each</h2>
+    <table>
+      <tr><th>Aspect</th><th>for loop</th><th>while loop</th></tr>
+      <tr><td>Use case</td><td>When the number of iterations is known or you iterate over a sequence</td><td>When the number of iterations is unknown and depends on a condition</td></tr>
+      <tr><td>Iteration</td><td>Iterates over a sequence (list, range, string, etc.)</td><td>Repeats as long as a boolean condition is True</td></tr>
+      <tr><td>Counter management</td><td>Automatic — handled by the iterator</td><td>Manual — you must update the counter yourself</td></tr>
+      <tr><td>Risk of infinite loop</td><td>Low (bounded by sequence length)</td><td>High if condition never becomes False</td></tr>
+      <tr><td>Best for</td><td>Iterating over collections, fixed-count repetitions</td><td>User-input loops, game loops, waiting for events</td></tr>
+    </table>
+<pre><span class="cm"># for loop — iterate over a list (count is known)</span>
+fruits = [<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"mango"</span>]
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="fn">print</span>(fruit)
+
+<span class="cm"># while loop — keep asking until valid input (count is unknown)</span>
+age = -<span class="num">1</span>
+<span class="kw">while</span> age < <span class="num">0</span>:
+    age = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter valid age: "</span>))
+<span class="fn">print</span>(<span class="str">f"Age entered: {age}"</span>)</pre>
+  </div>
+
+  <!-- Q9 -->
+  <div class="card" id="q9">
+    <div class="q-label">Question 9</div>
+    <h2>for loop with range() — all three parameter forms</h2>
+    <p>The <code>range()</code> function generates a sequence of integers and is commonly used with <code>for</code> loops. It has three forms:</p>
+    <table>
+      <tr><th>Form</th><th>Syntax</th><th>Parameters</th></tr>
+      <tr><td>One parameter</td><td><code>range(stop)</code></td><td>Generates 0 to stop-1, step=1</td></tr>
+      <tr><td>Two parameters</td><td><code>range(start, stop)</code></td><td>Generates start to stop-1, step=1</td></tr>
+      <tr><td>Three parameters</td><td><code>range(start, stop, step)</code></td><td>Generates start to stop-1, with given step</td></tr>
+    </table>
+<pre><span class="cm"># 1. One parameter — range(stop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(i, end=<span class="str">" "</span>)
+<span class="out"># Output: 0 1 2 3 4</span>
+
+<span class="cm"># 2. Two parameters — range(start, stop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="num">7</span>):
+    <span class="fn">print</span>(i, end=<span class="str">" "</span>)
+<span class="out"># Output: 2 3 4 5 6</span>
+
+<span class="cm"># 3. Three parameters — range(start, stop, step)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>, <span class="num">2</span>):     <span class="cm"># odd numbers</span>
+    <span class="fn">print</span>(i, end=<span class="str">" "</span>)
+<span class="out"># Output: 1 3 5 7 9</span>
+
+<span class="cm"># Negative step — counting backwards</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>, <span class="num">0</span>, -<span class="num">2</span>):
+    <span class="fn">print</span>(i, end=<span class="str">" "</span>)
+<span class="out"># Output: 10 8 6 4 2</span></pre>
+    <div class="info-box">💡 The <b>stop</b> value is always <b>exclusive</b> — <code>range(5)</code> gives 0,1,2,3,4 (not 5). Think of it as: the loop runs while i &lt; stop.</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="card" id="q10">
+    <div class="q-label">Question 10</div>
+    <h2>else clause with loops — when is it executed?</h2>
+    <p>Python uniquely allows an <code>else</code> block to be attached to both <code>for</code> and <code>while</code> loops. The <code>else</code> block executes when the loop <b>completes normally</b> — i.e., it is <b>NOT executed</b> if the loop was terminated by a <code>break</code> statement.</p>
+    <div class="info-box"><b>Rule:</b> else runs → loop finished without break. else is skipped → loop was broken with <code>break</code>.</div>
+<pre><span class="cm"># else with for loop — searching for a number</span>
+numbers = [<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">40</span>]
+target = <span class="num">25</span>
+<span class="kw">for</span> n <span class="kw">in</span> numbers:
+    <span class="kw">if</span> n == target:
+        <span class="fn">print</span>(<span class="str">"Found!"</span>)
+        <span class="kw">break</span>
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Number not found in list."</span>)
+<span class="out"># Output: Number not found in list.  (because 25 is not in list)</span>
+
+<span class="cm"># else with while loop</span>
+count = <span class="num">0</span>
+<span class="kw">while</span> count < <span class="num">3</span>:
+    <span class="fn">print</span>(<span class="str">f"count = {count}"</span>)
+    count += <span class="num">1</span>
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Loop ended normally."</span>)
+<span class="out"># count = 0
+# count = 1
+# count = 2
+# Loop ended normally.</span></pre>
+    <div class="success-box">✅ Use case: The loop-else pattern is very useful for <b>search algorithms</b> — run the loop to search; if not found (no break), the else block handles the "not found" case elegantly.</div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="card" id="q11">
+    <div class="q-label">Question 11</div>
+    <h2>break vs continue — with examples</h2>
+    <table>
+      <tr><th>Statement</th><th>Effect</th><th>Remaining iterations</th></tr>
+      <tr><td><code>break</code></td><td>Immediately terminates the loop entirely</td><td>All remaining iterations are skipped</td></tr>
+      <tr><td><code>continue</code></td><td>Skips the rest of the current iteration and jumps to the next</td><td>Remaining iterations still execute normally</td></tr>
+    </table>
+<pre><span class="cm"># break — stop as soon as we find the target</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>):
+    <span class="kw">if</span> i == <span class="num">5</span>:
+        <span class="fn">print</span>(<span class="str">"Found 5! Stopping loop."</span>)
+        <span class="kw">break</span>
+    <span class="fn">print</span>(i)
+<span class="out"># Output: 1 2 3 4 Found 5! Stopping loop.</span>
+
+<span class="cm"># continue — skip multiples of 3, print the rest</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>):
+    <span class="kw">if</span> i % <span class="num">3</span> == <span class="num">0</span>:
+        <span class="kw">continue</span>       <span class="cm"># skip 3, 6, 9</span>
+    <span class="fn">print</span>(i, end=<span class="str">" "</span>)
+<span class="out"># Output: 1 2 4 5 7 8 10</span>
+
+<span class="cm"># Real-life: ATM — break on insufficient balance, continue on invalid input</span>
+transactions = [<span class="num">200</span>, -<span class="num">50</span>, <span class="num">1000</span>, <span class="num">300</span>]  <span class="cm"># -50 is invalid</span>
+balance = <span class="num">500</span>
+<span class="kw">for</span> amount <span class="kw">in</span> transactions:
+    <span class="kw">if</span> amount < <span class="num">0</span>:
+        <span class="fn">print</span>(<span class="str">"Invalid amount, skipping."</span>)
+        <span class="kw">continue</span>
+    <span class="kw">if</span> amount > balance:
+        <span class="fn">print</span>(<span class="str">"Insufficient balance, stopping."</span>)
+        <span class="kw">break</span>
+    balance -= amount
+    <span class="fn">print</span>(<span class="str">f"Withdrew {amount}. Balance: {balance}"</span>)</pre>
+  </div>
+
+  <!-- Q12 -->
+  <div class="card" id="q12">
+    <div class="q-label">Question 12</div>
+    <h2>The pass statement — role inside a loop</h2>
+    <p><b>pass</b> is a null statement in Python. It does absolutely nothing when executed. It is used as a <b>placeholder</b> where syntactically a block of code is required, but you don't want to write any code yet (or intentionally want to do nothing).</p>
+    <p><b>Why is pass needed?</b> Python uses indentation to define blocks. If you write <code>for i in range(5):</code> and leave the body empty, Python gives a <b>SyntaxError</b>. The <code>pass</code> statement satisfies the syntax requirement while doing nothing.</p>
+<pre><span class="cm"># Without pass — SyntaxError!</span>
+<span class="cm"># for i in range(5):
+#     ← empty body causes SyntaxError</span>
+
+<span class="cm"># With pass — valid, does nothing</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="kw">pass</span>   <span class="cm"># placeholder: logic to be added later</span>
+
+<span class="cm"># Common use: placeholder while developing</span>
+<span class="kw">def</span> <span class="fn">calculate_tax</span>(income):
+    <span class="kw">pass</span>    <span class="cm"># TODO: implement later</span>
+
+<span class="cm"># Useful in exception handling</span>
+<span class="kw">try</span>:
+    x = <span class="fn">int</span>(<span class="str">"abc"</span>)
+<span class="kw">except</span> ValueError:
+    <span class="kw">pass</span>    <span class="cm"># silently ignore the error</span>
+
+<span class="cm"># Difference from break/continue:</span>
+<span class="cm"># break  → exits the loop</span>
+<span class="cm"># continue → skips current iteration</span>
+<span class="cm"># pass   → does nothing, loop continues normally</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="kw">if</span> i == <span class="num">3</span>:
+        <span class="kw">pass</span>      <span class="cm"># nothing special happens at i=3</span>
+    <span class="fn">print</span>(i, end=<span class="str">" "</span>)
+<span class="out"># Output: 0 1 2 3 4  (all values, pass changed nothing)</span></pre>
+    <div class="success-box">✅ <b>Summary:</b> <code>pass</code> is mainly used during development as a placeholder, to silence syntax errors in empty blocks, or when you intentionally want a loop/function/class body that does nothing.</div>
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div style="display:flex;align-items:center;gap:14px;margin:10px 0 28px;">
+    <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+    <div style="background:#3776ab;color:white;font-size:12px;font-weight:700;padding:6px 18px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;">Part 2 — Functions, Scope, Recursion, Lambda, Modules & Files</div>
+    <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+  </div>
+
+  <!-- Q13: What is a function -->
+  <div class="card" id="q13">
+    <div class="q-label">Question 13</div>
+    <h2>What is a function in Python? Explain with a suitable example.</h2>
+    <p>A <b>function</b> is a named, reusable block of code designed to perform a specific task. Instead of writing the same logic repeatedly, you define it once and call it wherever needed. Functions improve <b>code reusability</b>, <b>readability</b>, and <b>modularity</b>.</p>
+    <p>Python has two types of functions:</p>
+    <ul>
+      <li><b>Built-in functions</b> — provided by Python itself (e.g., <code>print()</code>, <code>len()</code>, <code>range()</code>)</li>
+      <li><b>User-defined functions</b> — created by the programmer using the <code>def</code> keyword</li>
+    </ul>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">def</span> <span class="fn">function_name</span>(parameters):
+    <span class="cm">"""Optional docstring — describes the function"""</span>
+    <span class="cm"># body of the function</span>
+    <span class="kw">return</span> value   <span class="cm"># optional</span></pre>
+    <div class="syntax-label">Example — calculate area of a rectangle</div>
+<pre><span class="kw">def</span> <span class="fn">calculate_area</span>(length, width):
+    <span class="cm">"""Returns the area of a rectangle."""</span>
+    area = length * width
+    <span class="kw">return</span> area
+
+<span class="cm"># Calling the function</span>
+result = <span class="fn">calculate_area</span>(<span class="num">10</span>, <span class="num">5</span>)
+<span class="fn">print</span>(<span class="str">f"Area = {result}"</span>)   <span class="out"># Area = 50</span>
+
+<span class="cm"># Can be called multiple times with different inputs</span>
+<span class="fn">print</span>(<span class="fn">calculate_area</span>(<span class="num">7</span>, <span class="num">3</span>))  <span class="out"># 21</span></pre>
+    <div class="info-box">💡 A function is defined once with <code>def</code> and can be called any number of times. The <code>return</code> statement sends a value back to the caller.</div>
+  </div>
+
+  <!-- Q14: Parameters vs Arguments -->
+  <div class="card" id="q14">
+    <div class="q-label">Question 14</div>
+    <h2>Parameters vs Arguments — Positional, Keyword, Default, *args, **kwargs</h2>
+    <table>
+      <tr><th>Term</th><th>Meaning</th><th>Where it appears</th></tr>
+      <tr><td><b>Parameter</b></td><td>Variable listed in the function definition</td><td><code>def greet(name):</code> — name is a parameter</td></tr>
+      <tr><td><b>Argument</b></td><td>Actual value passed when calling the function</td><td><code>greet("Alice")</code> — "Alice" is an argument</td></tr>
+    </table>
+    <hr class="divider">
+    <p><b>1. Positional Arguments</b> — Matched to parameters by order (position).</p>
+<pre><span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+<span class="fn">print</span>(<span class="fn">add</span>(<span class="num">3</span>, <span class="num">7</span>))    <span class="out"># 10  — 3→a, 7→b</span></pre>
+    <p><b>2. Keyword Arguments</b> — Passed by specifying parameter name; order doesn't matter.</p>
+<pre><span class="kw">def</span> <span class="fn">introduce</span>(name, age):
+    <span class="fn">print</span>(<span class="str">f"I am {name}, age {age}."</span>)
+<span class="fn">introduce</span>(age=<span class="num">21</span>, name=<span class="str">"Alice"</span>)  <span class="out"># I am Alice, age 21.</span></pre>
+    <p><b>3. Default Arguments</b> — Parameter has a default value used when no argument is provided.</p>
+<pre><span class="kw">def</span> <span class="fn">greet</span>(name, message=<span class="str">"Hello"</span>):
+    <span class="fn">print</span>(<span class="str">f"{message}, {name}!"</span>)
+<span class="fn">greet</span>(<span class="str">"Bob"</span>)               <span class="out"># Hello, Bob!  (default used)</span>
+<span class="fn">greet</span>(<span class="str">"Bob"</span>, <span class="str">"Good morning"</span>)  <span class="out"># Good morning, Bob!</span></pre>
+    <p><b>4. *args — Variable-length positional arguments</b> — Collects any number of positional arguments into a <b>tuple</b>.</p>
+<pre><span class="kw">def</span> <span class="fn">total</span>(*numbers):
+    <span class="kw">return</span> <span class="fn">sum</span>(numbers)
+<span class="fn">print</span>(<span class="fn">total</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>))          <span class="out"># 6</span>
+<span class="fn">print</span>(<span class="fn">total</span>(<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">40</span>))    <span class="out"># 100</span></pre>
+    <p><b>5. **kwargs — Variable-length keyword arguments</b> — Collects any number of keyword arguments into a <b>dictionary</b>.</p>
+<pre><span class="kw">def</span> <span class="fn">show_info</span>(**details):
+    <span class="kw">for</span> key, value <span class="kw">in</span> details.<span class="fn">items</span>():
+        <span class="fn">print</span>(<span class="str">f"{key}: {value}"</span>)
+<span class="fn">show_info</span>(name=<span class="str">"Alice"</span>, city=<span class="str">"Ahmedabad"</span>, age=<span class="num">21</span>)
+<span class="out"># name: Alice
+# city: Ahmedabad
+# age: 21</span></pre>
+    <div class="info-box">💡 <b>Order in function signature:</b> <code>def f(positional, default=val, *args, **kwargs)</code> — always in this sequence.</div>
+  </div>
+
+  <!-- Q15: Fruitful vs Void -->
+  <div class="card" id="q15">
+    <div class="q-label">Question 15</div>
+    <h2>Fruitful (value-returning) vs Void functions — return vs no return</h2>
+    <table>
+      <tr><th>Feature</th><th>Fruitful Function</th><th>Void Function</th></tr>
+      <tr><td>Returns a value?</td><td>Yes — uses <code>return</code> with a value</td><td>No — no <code>return</code>, or <code>return</code> alone</td></tr>
+      <tr><td>Return type</td><td>Any data type (int, list, str, etc.)</td><td>Returns <code>None</code> implicitly</td></tr>
+      <tr><td>Use case</td><td>When the caller needs a computed result</td><td>When the function performs an action (print, write, modify)</td></tr>
+      <tr><td>Example</td><td><code>math.sqrt()</code>, <code>len()</code></td><td><code>print()</code>, <code>list.sort()</code></td></tr>
+    </table>
+<pre><span class="cm"># Fruitful function — returns a computed value</span>
+<span class="kw">def</span> <span class="fn">square</span>(n):
+    <span class="kw">return</span> n * n
+
+result = <span class="fn">square</span>(<span class="num">6</span>)
+<span class="fn">print</span>(result)              <span class="out"># 36</span>
+<span class="fn">print</span>(<span class="fn">square</span>(<span class="num">4</span>) + <span class="num">1</span>)      <span class="out"># 17  — can be used in expressions</span>
+
+<span class="cm"># Void function — performs an action, returns None</span>
+<span class="kw">def</span> <span class="fn">greet_user</span>(name):
+    <span class="fn">print</span>(<span class="str">f"Welcome, {name}!"</span>)   <span class="cm"># action: printing</span>
+
+<span class="fn">greet_user</span>(<span class="str">"Alice"</span>)        <span class="out"># Welcome, Alice!</span>
+x = <span class="fn">greet_user</span>(<span class="str">"Bob"</span>)
+<span class="fn">print</span>(x)                   <span class="out"># None  (void functions return None)</span></pre>
+    <div class="success-box">✅ <b>When to use return:</b> Use <code>return</code> when the caller needs to use the result in further computation. Use void (no return) when the function's purpose is a side effect — writing to a file, updating a list, or displaying output.</div>
+  </div>
+
+  <!-- Q16: Indentation -->
+  <div class="card" id="q16">
+    <div class="q-label">Question 16</div>
+    <h2>Why is indentation mandatory in Python? What error occurs on wrong indentation?</h2>
+    <p>In most languages (C, Java, JavaScript), code blocks are defined using curly braces <code>{}</code>, and indentation is optional (only for readability). In Python, <b>indentation IS the syntax</b> — it is the only way Python identifies what belongs inside a function, loop, or conditional block.</p>
+    <p>Python's design philosophy (PEP 8) enforces indentation to make code uniformly readable and to eliminate ambiguity about block boundaries.</p>
+    <table>
+      <tr><th>Error Type</th><th>When it occurs</th><th>Example trigger</th></tr>
+      <tr><td><b>IndentationError</b></td><td>Code inside a block is not indented at all</td><td>No spaces after <code>def</code> or <code>if</code></td></tr>
+      <tr><td><b>IndentationError: unexpected unindent</b></td><td>A line is indented less than the surrounding block inconsistently</td><td>Mixing 2-space and 4-space indents</td></tr>
+      <tr><td><b>TabError</b></td><td>Mixing tabs and spaces in the same file</td><td>Some lines use Tab, others use spaces</td></tr>
+    </table>
+<pre><span class="cm"># ✅ Correct — 4-space indentation (PEP 8 standard)</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="fn">print</span>(<span class="str">f"Hello, {name}"</span>)   <span class="cm"># 4 spaces</span>
+    <span class="kw">return</span> <span class="kw">True</span>
+
+<span class="cm"># ❌ Wrong — no indentation → IndentationError</span>
+<span class="cm"># def greet(name):
+# print("Hello")   ← IndentationError: expected an indented block</span>
+
+<span class="cm"># ❌ Mixed indentation → IndentationError</span>
+<span class="cm"># def greet(name):
+#     print("Hello")   ← 4 spaces
+#   return True         ← 2 spaces → IndentationError: unindent does not match</span></pre>
+    <div class="warn-box">⚠️ Python standard (PEP 8) recommends <b>4 spaces per indent level</b>. Never mix tabs and spaces — use your editor's "convert tabs to spaces" setting.</div>
+  </div>
+
+  <!-- Q17: Variable Scope / LEGB -->
+  <div class="card" id="q17">
+    <div class="q-label">Question 17</div>
+    <h2>Variable Scope in Python — The LEGB Rule</h2>
+    <p><b>Scope</b> refers to the region of a program where a variable is accessible. Python follows the <b>LEGB rule</b> to resolve variable names — it searches scopes in this order:</p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>L — Local</h4>
+        <p>Variables defined inside the current function. Accessible only within that function.</p>
+      </div>
+      <div class="feature-item">
+        <h4>E — Enclosing</h4>
+        <p>Variables in the scope of any enclosing (outer) function — applies to nested functions.</p>
+      </div>
+      <div class="feature-item">
+        <h4>G — Global</h4>
+        <p>Variables defined at the top level of the module/script, outside all functions.</p>
+      </div>
+      <div class="feature-item">
+        <h4>B — Built-in</h4>
+        <p>Names pre-defined in Python's built-in namespace: <code>print</code>, <code>len</code>, <code>range</code>, <code>int</code>, etc.</p>
+      </div>
+    </div>
+<pre><span class="cm"># LEGB Rule illustrated</span>
+x = <span class="str">"global"</span>            <span class="cm"># G — Global</span>
+
+<span class="kw">def</span> <span class="fn">outer</span>():
+    x = <span class="str">"enclosing"</span>      <span class="cm"># E — Enclosing</span>
+
+    <span class="kw">def</span> <span class="fn">inner</span>():
+        x = <span class="str">"local"</span>      <span class="cm"># L — Local</span>
+        <span class="fn">print</span>(x)         <span class="out"># local   (L found first)</span>
+        <span class="fn">print</span>(<span class="fn">len</span>)       <span class="cm"># B — Built-in (len is a built-in)</span>
+
+    <span class="fn">inner</span>()
+    <span class="fn">print</span>(x)             <span class="out"># enclosing</span>
+
+<span class="fn">outer</span>()
+<span class="fn">print</span>(x)                 <span class="out"># global</span></pre>
+    <div class="info-box">💡 Python searches L → E → G → B and uses the <b>first match</b> it finds. If the name is not found in any scope, a <b>NameError</b> is raised.</div>
+  </div>
+
+  <!-- Q18: Local vs Global -->
+  <div class="card" id="q18">
+    <div class="q-label">Question 18</div>
+    <h2>Local vs Global Variables — Variable Shadowing</h2>
+    <table>
+      <tr><th>Feature</th><th>Local Variable</th><th>Global Variable</th></tr>
+      <tr><td>Defined in</td><td>Inside a function</td><td>Outside all functions, at module level</td></tr>
+      <tr><td>Accessible</td><td>Only within that function</td><td>Anywhere in the module</td></tr>
+      <tr><td>Lifetime</td><td>Created when function is called, destroyed when it returns</td><td>Exists for the entire program lifetime</td></tr>
+      <tr><td>Modification</td><td>Can be modified freely inside its function</td><td>Needs <code>global</code> keyword to modify inside a function</td></tr>
+    </table>
+<pre>score = <span class="num">100</span>         <span class="cm"># global variable</span>
+
+<span class="kw">def</span> <span class="fn">game</span>():
+    score = <span class="num">50</span>      <span class="cm"># local variable — SHADOWS the global</span>
+    <span class="fn">print</span>(<span class="str">f"Inside function: {score}"</span>)  <span class="out"># 50</span>
+
+<span class="fn">game</span>()
+<span class="fn">print</span>(<span class="str">f"Outside function: {score}"</span>)    <span class="out"># 100 (global unchanged)</span></pre>
+    <p><b>Variable Shadowing</b> occurs when a local variable has the <b>same name</b> as a global variable. Inside the function, the local variable <b>hides</b> (shadows) the global one. The global variable is NOT modified — they are completely separate variables.</p>
+    <div class="warn-box">⚠️ Shadowing can cause confusion. If you intend to modify the global variable, use the <code>global</code> keyword explicitly.</div>
+  </div>
+
+  <!-- Q19: global keyword -->
+  <div class="card" id="q19">
+    <div class="q-label">Question 19</div>
+    <h2>The global keyword — and why overusing it is bad practice</h2>
+    <p>By default, a variable assigned inside a function is local. The <b><code>global</code> keyword</b> tells Python that a variable inside a function refers to the global (module-level) variable, allowing you to <b>read and modify</b> it from within the function.</p>
+<pre>counter = <span class="num">0</span>              <span class="cm"># global variable</span>
+
+<span class="kw">def</span> <span class="fn">increment</span>():
+    <span class="kw">global</span> counter        <span class="cm"># declare we want the global one</span>
+    counter += <span class="num">1</span>
+
+<span class="fn">increment</span>()
+<span class="fn">increment</span>()
+<span class="fn">print</span>(counter)           <span class="out"># 2</span>
+
+<span class="cm"># Without global keyword:</span>
+<span class="kw">def</span> <span class="fn">bad_increment</span>():
+    counter += <span class="num">1</span>          <span class="cm"># UnboundLocalError! Python treats it as local</span></pre>
+    <hr class="divider">
+    <p><b>Why overusing global variables is bad practice:</b></p>
+    <ul>
+      <li><b>Hard to debug</b> — any function anywhere can change a global variable, making it difficult to trace the source of a bug.</li>
+      <li><b>Breaks encapsulation</b> — functions should work with their inputs (parameters) and return outputs, not silently rely on external state.</li>
+      <li><b>Not thread-safe</b> — in multi-threaded programs, multiple threads modifying a global variable leads to race conditions.</li>
+      <li><b>Reduces reusability</b> — a function that depends on globals can't be easily reused in another program.</li>
+    </ul>
+    <div class="success-box">✅ <b>Better alternative:</b> Pass values as function arguments and return results. This makes functions pure and predictable.</div>
+  </div>
+
+  <!-- Q20: nonlocal keyword -->
+  <div class="card" id="q20">
+    <div class="q-label">Question 20</div>
+    <h2>The nonlocal keyword — nested functions</h2>
+    <p>The <b><code>nonlocal</code></b> keyword is used inside a <b>nested (inner) function</b> to refer to and modify a variable defined in the <b>immediately enclosing (outer) function's scope</b> — without affecting the global scope.</p>
+    <p>It is the nested-function equivalent of <code>global</code> — but instead of reaching all the way to the global scope, it reaches only to the nearest enclosing scope.</p>
+<pre><span class="kw">def</span> <span class="fn">outer</span>():
+    count = <span class="num">0</span>               <span class="cm"># enclosing variable</span>
+
+    <span class="kw">def</span> <span class="fn">inner</span>():
+        <span class="kw">nonlocal</span> count      <span class="cm"># refer to outer's count</span>
+        count += <span class="num">1</span>
+        <span class="fn">print</span>(<span class="str">f"inner: count = {count}"</span>)
+
+    <span class="fn">inner</span>()
+    <span class="fn">inner</span>()
+    <span class="fn">print</span>(<span class="str">f"outer: count = {count}"</span>)
+
+<span class="fn">outer</span>()
+<span class="out"># inner: count = 1
+# inner: count = 2
+# outer: count = 2</span>
+
+<span class="cm"># Practical use: closure-based counter (no global needed)</span>
+<span class="kw">def</span> <span class="fn">make_counter</span>():
+    n = <span class="num">0</span>
+    <span class="kw">def</span> <span class="fn">counter</span>():
+        <span class="kw">nonlocal</span> n
+        n += <span class="num">1</span>
+        <span class="kw">return</span> n
+    <span class="kw">return</span> counter
+
+c = <span class="fn">make_counter</span>()
+<span class="fn">print</span>(<span class="fn">c</span>(), <span class="fn">c</span>(), <span class="fn">c</span>())   <span class="out"># 1 2 3</span></pre>
+    <div class="info-box">💡 <code>nonlocal</code> is mainly used in <b>closures</b> — inner functions that remember and modify state from their enclosing function.</div>
+  </div>
+
+  <!-- Q21: Recursion -->
+  <div class="card" id="q21">
+    <div class="q-label">Question 21</div>
+    <h2>Recursion vs Iteration — advantages and disadvantages</h2>
+    <p><b>Recursion</b> is a programming technique where a function calls <b>itself</b> to solve a problem by breaking it into smaller sub-problems of the same type. <b>Iteration</b> uses loops (<code>for</code>/<code>while</code>) to repeat a block of code.</p>
+    <table>
+      <tr><th>Aspect</th><th>Recursion</th><th>Iteration</th></tr>
+      <tr><td>Approach</td><td>Function calls itself with a simpler input</td><td>Uses a loop to repeat code</td></tr>
+      <tr><td>Termination</td><td>Base case stops the recursion</td><td>Loop condition becomes False</td></tr>
+      <tr><td>Memory use</td><td>Higher — each call adds a stack frame</td><td>Lower — single stack frame</td></tr>
+      <tr><td>Speed</td><td>Slower due to function call overhead</td><td>Faster in most cases</td></tr>
+      <tr><td>Code clarity</td><td>Elegant for tree/graph problems, factorial, Fibonacci</td><td>Clearer for simple repetition</td></tr>
+      <tr><td>Risk</td><td>Stack overflow if base case is missing</td><td>Infinite loop if condition never False</td></tr>
+      <tr><td>Best for</td><td>Divide-and-conquer, tree traversal, backtracking</td><td>Simple counters, array processing</td></tr>
+    </table>
+<pre><span class="cm"># Factorial — recursive approach</span>
+<span class="kw">def</span> <span class="fn">factorial_recursive</span>(n):
+    <span class="kw">if</span> n == <span class="num">0</span>:
+        <span class="kw">return</span> <span class="num">1</span>            <span class="cm"># base case</span>
+    <span class="kw">return</span> n * <span class="fn">factorial_recursive</span>(n - <span class="num">1</span>)   <span class="cm"># recursive case</span>
+
+<span class="cm"># Factorial — iterative approach</span>
+<span class="kw">def</span> <span class="fn">factorial_iterative</span>(n):
+    result = <span class="num">1</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, n + <span class="num">1</span>):
+        result *= i
+    <span class="kw">return</span> result
+
+<span class="fn">print</span>(<span class="fn">factorial_recursive</span>(<span class="num">5</span>))   <span class="out"># 120</span>
+<span class="fn">print</span>(<span class="fn">factorial_iterative</span>(<span class="num">5</span>))    <span class="out"># 120</span></pre>
+  </div>
+
+  <!-- Q22: Base case & Recursive case -->
+  <div class="card" id="q22">
+    <div class="q-label">Question 22</div>
+    <h2>Two essential parts of a recursive function — Base case & Recursive case</h2>
+    <p>Every correct recursive function must have <b>exactly two parts</b>:</p>
+    <ul>
+      <li><b>Base case</b> — The simplest version of the problem that can be solved directly without further recursion. It <b>stops</b> the recursion. Without it, the function recurses infinitely and causes a <b>RecursionError (stack overflow)</b>.</li>
+      <li><b>Recursive case</b> — The part where the function calls itself with a <b>simpler or smaller</b> input, moving the problem toward the base case.</li>
+    </ul>
+<pre><span class="cm"># Example 1: Factorial</span>
+<span class="kw">def</span> <span class="fn">factorial</span>(n):
+    <span class="kw">if</span> n == <span class="num">0</span> <span class="kw">or</span> n == <span class="num">1</span>:       <span class="cm"># BASE CASE: factorial(0)=1, factorial(1)=1</span>
+        <span class="kw">return</span> <span class="num">1</span>
+    <span class="kw">return</span> n * <span class="fn">factorial</span>(n - <span class="num">1</span>)  <span class="cm"># RECURSIVE CASE: problem gets smaller</span>
+
+<span class="cm"># Call trace for factorial(4):
+# factorial(4) = 4 * factorial(3)
+#              = 4 * 3 * factorial(2)
+#              = 4 * 3 * 2 * factorial(1)
+#              = 4 * 3 * 2 * 1  ← base case hit
+#              = 24</span>
+
+<span class="cm"># Example 2: Fibonacci</span>
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="kw">if</span> n <= <span class="num">1</span>:                   <span class="cm"># BASE CASE</span>
+        <span class="kw">return</span> n
+    <span class="kw">return</span> <span class="fn">fib</span>(n-<span class="num">1</span>) + <span class="fn">fib</span>(n-<span class="num">2</span>)   <span class="cm"># RECURSIVE CASE</span>
+
+<span class="fn">print</span>(<span class="fn">fib</span>(<span class="num">7</span>))    <span class="out"># 13   (sequence: 0,1,1,2,3,5,8,13...)</span></pre>
+    <div class="warn-box">⚠️ Python's default recursion limit is <b>1000 calls</b>. For deeper recursion, use <code>sys.setrecursionlimit()</code> — or better, switch to an iterative approach.</div>
+  </div>
+
+  <!-- Q23: Lambda functions -->
+  <div class="card" id="q23">
+    <div class="q-label">Question 23</div>
+    <h2>Lambda functions — why called anonymous functions</h2>
+    <p>A <b>lambda function</b> is a small, <b>anonymous</b> (nameless) function defined using the <code>lambda</code> keyword. It can have any number of parameters but can only have <b>one expression</b> (whose value is automatically returned).</p>
+    <p>It is called <b>anonymous</b> because it is defined without using the <code>def</code> keyword and is not bound to a name in the traditional sense — though it can optionally be assigned to a variable.</p>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">lambda</span> parameters : expression</pre>
+    <div class="syntax-label">Comparison: regular function vs lambda</div>
+<pre><span class="cm"># Regular function</span>
+<span class="kw">def</span> <span class="fn">square</span>(x):
+    <span class="kw">return</span> x ** <span class="num">2</span>
+
+<span class="cm"># Equivalent lambda function</span>
+square = <span class="kw">lambda</span> x: x ** <span class="num">2</span>
+
+<span class="fn">print</span>(<span class="fn">square</span>(<span class="num">5</span>))    <span class="out"># 25</span>
+
+<span class="cm"># Lambda with multiple parameters</span>
+add = <span class="kw">lambda</span> a, b: a + b
+<span class="fn">print</span>(<span class="fn">add</span>(<span class="num">3</span>, <span class="num">4</span>))    <span class="out"># 7</span>
+
+<span class="cm"># Lambda with conditional expression</span>
+max_val = <span class="kw">lambda</span> a, b: a <span class="kw">if</span> a > b <span class="kw">else</span> b
+<span class="fn">print</span>(<span class="fn">max_val</span>(<span class="num">10</span>, <span class="num">7</span>))    <span class="out"># 10</span></pre>
+    <div class="info-box">💡 Lambda functions are best suited for <b>short, throwaway functions</b> — especially as inline arguments to higher-order functions. For complex logic, always prefer a named <code>def</code> function.</div>
+  </div>
+
+  <!-- Q24: Lambda with higher-order functions -->
+  <div class="card" id="q24">
+    <div class="q-label">Question 24</div>
+    <h2>Lambda with higher-order functions — map, filter, sorted, reduce</h2>
+    <p>A <b>higher-order function</b> is one that takes another function as an argument or returns a function. Lambda functions are most commonly used with higher-order functions because they allow you to define the required short logic <b>inline</b> without separately defining a named function.</p>
+    <table>
+      <tr><th>Built-in Function</th><th>Purpose</th><th>Returns</th></tr>
+      <tr><td><code>map(func, iterable)</code></td><td>Apply a function to every element</td><td>map object (iterator)</td></tr>
+      <tr><td><code>filter(func, iterable)</code></td><td>Keep only elements where func returns True</td><td>filter object (iterator)</td></tr>
+      <tr><td><code>sorted(iterable, key=func)</code></td><td>Sort with a custom key function</td><td>sorted list</td></tr>
+      <tr><td><code>reduce(func, iterable)</code></td><td>Cumulatively apply function to reduce to one value</td><td>single value</td></tr>
+    </table>
+<pre><span class="kw">from</span> functools <span class="kw">import</span> reduce
+
+nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+<span class="cm"># map — square every number</span>
+squared = <span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> x: x**<span class="num">2</span>, nums))
+<span class="fn">print</span>(squared)           <span class="out"># [1, 4, 9, 16, 25]</span>
+
+<span class="cm"># filter — keep only even numbers</span>
+evens = <span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> x: x % <span class="num">2</span> == <span class="num">0</span>, nums))
+<span class="fn">print</span>(evens)             <span class="out"># [2, 4]</span>
+
+<span class="cm"># sorted — sort strings by length</span>
+words = [<span class="str">"banana"</span>, <span class="str">"kiwi"</span>, <span class="str">"apple"</span>, <span class="str">"fig"</span>]
+<span class="fn">print</span>(<span class="fn">sorted</span>(words, key=<span class="kw">lambda</span> w: <span class="fn">len</span>(w)))
+<span class="out"># ['fig', 'kiwi', 'apple', 'banana']</span>
+
+<span class="cm"># reduce — product of all numbers</span>
+product = <span class="fn">reduce</span>(<span class="kw">lambda</span> a, b: a * b, nums)
+<span class="fn">print</span>(product)           <span class="out"># 120</span></pre>
+  </div>
+
+  <!-- Q25: Modules -->
+  <div class="card" id="q25">
+    <div class="q-label">Question 25</div>
+    <h2>What is a module in Python? Types of modules</h2>
+    <p>A <b>module</b> is a file containing Python code (functions, classes, variables, and runnable statements) with a <code>.py</code> extension. Modules allow you to <b>organize and reuse code</b> across different programs — instead of rewriting the same code, you import it from a module.</p>
+<pre><span class="cm"># Importing and using a module</span>
+<span class="kw">import</span> math
+<span class="fn">print</span>(math.<span class="fn">sqrt</span>(<span class="num">16</span>))    <span class="out"># 4.0</span>
+<span class="fn">print</span>(math.pi)           <span class="out"># 3.141592653589793</span>
+
+<span class="cm"># Import specific names</span>
+<span class="kw">from</span> math <span class="kw">import</span> factorial, ceil
+<span class="fn">print</span>(<span class="fn">factorial</span>(<span class="num">5</span>))     <span class="out"># 120</span>
+
+<span class="cm"># Import with alias</span>
+<span class="kw">import</span> datetime <span class="kw">as</span> dt
+<span class="fn">print</span>(dt.date.<span class="fn">today</span>())  <span class="out"># today's date</span></pre>
+    <hr class="divider">
+    <p><b>Types of Modules in Python:</b></p>
+    <table>
+      <tr><th>Type</th><th>Description</th><th>Examples</th></tr>
+      <tr><td><b>Built-in modules</b></td><td>Pre-installed with Python; no installation needed</td><td><code>math</code>, <code>os</code>, <code>sys</code>, <code>random</code>, <code>datetime</code>, <code>json</code>, <code>re</code></td></tr>
+      <tr><td><b>Standard library modules</b></td><td>Part of Python's standard library (come with Python)</td><td><code>collections</code>, <code>itertools</code>, <code>functools</code>, <code>pathlib</code></td></tr>
+      <tr><td><b>Third-party modules</b></td><td>Installed via pip from PyPI; not part of Python itself</td><td><code>numpy</code>, <code>pandas</code>, <code>requests</code>, <code>flask</code>, <code>matplotlib</code></td></tr>
+      <tr><td><b>User-defined modules</b></td><td>Created by the programmer in a .py file</td><td><code>myutils.py</code>, <code>calculator.py</code></td></tr>
+    </table>
+<pre><span class="cm"># User-defined module example
+# File: mymath.py</span>
+<span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+
+<span class="cm"># File: main.py</span>
+<span class="kw">import</span> mymath
+<span class="fn">print</span>(mymath.<span class="fn">add</span>(<span class="num">3</span>, <span class="num">4</span>))  <span class="out"># 7</span></pre>
+  </div>
+
+  <!-- Q26: File opening modes -->
+  <div class="card" id="q26">
+    <div class="q-label">Question 26</div>
+    <h2>File opening modes in Python — when each is used</h2>
+    <p>Files are opened using the built-in <code>open(filename, mode)</code> function. The <b>mode</b> determines what operations are permitted and whether the file is treated as text or binary.</p>
+    <table>
+      <tr><th>Mode</th><th>Name</th><th>Description</th><th>File must exist?</th></tr>
+      <tr><td><code>"r"</code></td><td>Read</td><td>Opens for reading. Default mode.</td><td>Yes — FileNotFoundError if missing</td></tr>
+      <tr><td><code>"w"</code></td><td>Write</td><td>Opens for writing. <b>Overwrites</b> existing content. Creates file if missing.</td><td>No — creates new file</td></tr>
+      <tr><td><code>"a"</code></td><td>Append</td><td>Opens for writing at end of file. Preserves existing content.</td><td>No — creates new file</td></tr>
+      <tr><td><code>"x"</code></td><td>Exclusive create</td><td>Creates a new file. Fails if file already exists.</td><td>No — FileExistsError if exists</td></tr>
+      <tr><td><code>"r+"</code></td><td>Read+Write</td><td>Opens for both reading and writing from the beginning.</td><td>Yes</td></tr>
+      <tr><td><code>"w+"</code></td><td>Write+Read</td><td>Opens for reading and writing. Truncates file first.</td><td>No</td></tr>
+      <tr><td><code>"a+"</code></td><td>Append+Read</td><td>Opens for reading and appending.</td><td>No</td></tr>
+      <tr><td><code>"b"</code></td><td>Binary</td><td>Modifier — add to any mode for binary files: <code>"rb"</code>, <code>"wb"</code></td><td>Depends on base mode</td></tr>
+    </table>
+<pre><span class="cm"># Read a file</span>
+f = <span class="fn">open</span>(<span class="str">"data.txt"</span>, <span class="str">"r"</span>)
+content = f.<span class="fn">read</span>()
+f.<span class="fn">close</span>()
+
+<span class="cm"># Write to a file (overwrites)</span>
+f = <span class="fn">open</span>(<span class="str">"output.txt"</span>, <span class="str">"w"</span>)
+f.<span class="fn">write</span>(<span class="str">"Hello, File!\n"</span>)
+f.<span class="fn">close</span>()
+
+<span class="cm"># Append to a file (preserves content)</span>
+f = <span class="fn">open</span>(<span class="str">"log.txt"</span>, <span class="str">"a"</span>)
+f.<span class="fn">write</span>(<span class="str">"New log entry\n"</span>)
+f.<span class="fn">close</span>()</pre>
+  </div>
+
+  <!-- Q27: Text vs Binary mode -->
+  <div class="card" id="q27">
+    <div class="q-label">Question 27</div>
+    <h2>Text mode vs Binary mode in file handling</h2>
+    <table>
+      <tr><th>Aspect</th><th>Text Mode (default)</th><th>Binary Mode (<code>"b"</code> flag)</th></tr>
+      <tr><td>Data type</td><td>Reads/writes <code>str</code> objects</td><td>Reads/writes <code>bytes</code> objects</td></tr>
+      <tr><td>Encoding</td><td>Applies encoding/decoding (default: UTF-8)</td><td>No encoding — raw bytes</td></tr>
+      <tr><td>Line endings</td><td>Translates <code>\r\n</code> → <code>\n</code> on Windows</td><td>No translation — exact bytes preserved</td></tr>
+      <tr><td>Use for</td><td>Plain text files: .txt, .csv, .json, .html, .py</td><td>Non-text files: images, audio, video, PDFs, executables</td></tr>
+      <tr><td>Mode strings</td><td><code>"r"</code>, <code>"w"</code>, <code>"a"</code></td><td><code>"rb"</code>, <code>"wb"</code>, <code>"ab"</code></td></tr>
+    </table>
+<pre><span class="cm"># Text mode — reading a .txt file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"notes.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    text = f.<span class="fn">read</span>()
+    <span class="fn">print</span>(<span class="fn">type</span>(text))   <span class="out"># &lt;class 'str'&gt;</span>
+
+<span class="cm"># Binary mode — copying an image file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"photo.jpg"</span>, <span class="str">"rb"</span>) <span class="kw">as</span> src:
+    data = src.<span class="fn">read</span>()
+    <span class="fn">print</span>(<span class="fn">type</span>(data))   <span class="out"># &lt;class 'bytes'&gt;</span>
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"copy.jpg"</span>, <span class="str">"wb"</span>) <span class="kw">as</span> dst:
+    dst.<span class="fn">write</span>(data)     <span class="cm"># write raw bytes</span></pre>
+    <div class="warn-box">⚠️ Opening a binary file (image, PDF) in text mode causes a <b>UnicodeDecodeError</b> because the raw bytes are not valid text characters. Always use <code>"rb"</code> / <code>"wb"</code> for non-text files.</div>
+  </div>
+
+  <!-- Q28: with statement -->
+  <div class="card" id="q28">
+    <div class="q-label">Question 28</div>
+    <h2>The with statement for files — why it's preferred over manual close()</h2>
+    <p>The <code>with</code> statement (also called a <b>context manager</b>) automatically handles opening and <b>closing</b> of a file — even if an exception occurs inside the block. It guarantees that the file is properly closed when the <code>with</code> block exits.</p>
+    <table>
+      <tr><th>Aspect</th><th>Manual open/close</th><th>with statement</th></tr>
+      <tr><td>Closing guarantee</td><td>Only if you explicitly call <code>close()</code></td><td>Automatically closed when block exits</td></tr>
+      <tr><td>Exception safety</td><td>If exception occurs before <code>close()</code>, file stays open → resource leak</td><td>File always closed, even if exception is raised</td></tr>
+      <tr><td>Code length</td><td>More verbose (try/finally needed for safety)</td><td>Concise and clean</td></tr>
+      <tr><td>Best practice</td><td>❌ Not recommended</td><td>✅ Recommended</td></tr>
+    </table>
+<pre><span class="cm"># ❌ Manual approach — risky</span>
+f = <span class="fn">open</span>(<span class="str">"data.txt"</span>, <span class="str">"r"</span>)
+content = f.<span class="fn">read</span>()
+<span class="cm"># If an exception occurs here, f.close() is never called!</span>
+f.<span class="fn">close</span>()
+
+<span class="cm"># ✅ with statement — safe and clean</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.txt"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
+    content = f.<span class="fn">read</span>()
+    <span class="fn">print</span>(content)
+<span class="cm"># File is automatically closed here, exception or not</span>
+
+<span class="cm"># Reading line by line with with</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"students.txt"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
+    <span class="kw">for</span> line <span class="kw">in</span> f:
+        <span class="fn">print</span>(line.<span class="fn">strip</span>())
+
+<span class="cm"># Writing with with</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"output.txt"</span>, <span class="str">"w"</span>) <span class="kw">as</span> f:
+    f.<span class="fn">write</span>(<span class="str">"Line 1\n"</span>)
+    f.<span class="fn">write</span>(<span class="str">"Line 2\n"</span>)</pre>
+    <div class="info-box">💡 The <code>with</code> statement works by calling <code>__enter__()</code> at the start and <code>__exit__()</code> at the end of the block — <code>__exit__()</code> closes the file regardless of how the block exits.</div>
+  </div>
+
+  <!-- Q29: os module -->
+  <div class="card" id="q29">
+    <div class="q-label">Question 29</div>
+    <h2>Key functions from the os module</h2>
+    <p>The <b>os module</b> provides a way to interact with the <b>operating system</b> — working with files, directories, paths, and environment variables in a cross-platform way.</p>
+<pre><span class="kw">import</span> os</pre>
+    <table>
+      <tr><th>Function</th><th>Purpose</th></tr>
+      <tr><td><code>os.getcwd()</code></td><td>Get the current working directory (the directory Python is currently operating in)</td></tr>
+      <tr><td><code>os.chdir(path)</code></td><td>Change the current working directory to the specified path</td></tr>
+      <tr><td><code>os.listdir(path)</code></td><td>Return a list of all files and directories in the specified path</td></tr>
+      <tr><td><code>os.mkdir(path)</code></td><td>Create a new directory at the specified path (one level only)</td></tr>
+      <tr><td><code>os.remove(path)</code></td><td>Delete a file at the specified path (raises error if not a file)</td></tr>
+    </table>
+<pre><span class="kw">import</span> os
+
+<span class="cm"># 1. os.getcwd() — where am I?</span>
+<span class="fn">print</span>(os.<span class="fn">getcwd</span>())
+<span class="out"># C:\Users\Alice\Documents  (or /home/alice on Linux)</span>
+
+<span class="cm"># 2. os.chdir() — move to another directory</span>
+os.<span class="fn">chdir</span>(<span class="str">"C:/Users/Alice/Projects"</span>)
+<span class="fn">print</span>(os.<span class="fn">getcwd</span>())   <span class="out"># C:\Users\Alice\Projects</span>
+
+<span class="cm"># 3. os.listdir() — see folder contents</span>
+files = os.<span class="fn">listdir</span>(<span class="str">"."</span>)   <span class="cm"># "." means current directory</span>
+<span class="fn">print</span>(files)
+<span class="out"># ['main.py', 'data.txt', 'images', 'README.md']</span>
+
+<span class="cm"># 4. os.mkdir() — create a new folder</span>
+os.<span class="fn">mkdir</span>(<span class="str">"output_folder"</span>)
+<span class="cm"># Creates 'output_folder' in the current directory</span>
+
+<span class="cm"># 5. os.remove() — delete a file</span>
+os.<span class="fn">remove</span>(<span class="str">"old_data.txt"</span>)
+<span class="cm"># Permanently deletes old_data.txt</span>
+
+<span class="cm"># Other useful os functions</span>
+<span class="fn">print</span>(os.path.<span class="fn">exists</span>(<span class="str">"data.txt"</span>))    <span class="out"># True or False</span>
+<span class="fn">print</span>(os.path.<span class="fn">join</span>(<span class="str">"folder"</span>, <span class="str">"file.txt"</span>))  <span class="out"># folder/file.txt (OS-safe)</span>
+os.<span class="fn">makedirs</span>(<span class="str">"a/b/c"</span>, exist_ok=<span class="kw">True</span>)  <span class="cm"># create nested dirs</span></pre>
+    <div class="warn-box">⚠️ <code>os.remove()</code> permanently deletes the file — there is no recycle bin. Always confirm the path before calling it. Use <code>os.path.exists()</code> to check first.</div>
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div style="display:flex;align-items:center;gap:14px;margin:10px 0 28px;">
+    <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+    <div style="background:#3776ab;color:white;font-size:12px;font-weight:700;padding:6px 18px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;">Part 3 — Strings, Tuples, Lists, Dicts & Sets</div>
+    <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+  </div>
+
+  <!-- Q30: Mutable vs Immutable -->
+  <div class="card" id="q30">
+    <div class="q-label">Question 30</div>
+    <h2>Mutable vs Immutable data types — two examples of each</h2>
+    <p>In Python, <b>mutability</b> refers to whether an object's value (or contents) can be changed after it is created.</p>
+    <table>
+      <tr><th>Feature</th><th>Immutable</th><th>Mutable</th></tr>
+      <tr><td>Can be modified after creation?</td><td>No — any "change" creates a new object</td><td>Yes — modified in-place, same object</td></tr>
+      <tr><td>Memory identity (<code>id()</code>)</td><td>Changes when value changes</td><td>Stays the same after modification</td></tr>
+      <tr><td>Safe as dict key?</td><td>Yes</td><td>No (unhashable)</td></tr>
+      <tr><td>Examples</td><td><code>int</code>, <code>float</code>, <code>str</code>, <code>tuple</code>, <code>bool</code>, <code>frozenset</code></td><td><code>list</code>, <code>dict</code>, <code>set</code>, <code>bytearray</code></td></tr>
+    </table>
+    <hr class="divider">
+    <p><b>Immutable examples:</b></p>
+<pre><span class="cm"># 1. int — immutable</span>
+x = <span class="num">10</span>
+<span class="fn">print</span>(<span class="fn">id</span>(x))       <span class="out"># some id, e.g. 140712345</span>
+x = x + <span class="num">5</span>           <span class="cm"># creates a NEW int object, rebinds x</span>
+<span class="fn">print</span>(<span class="fn">id</span>(x))       <span class="out"># different id — x now points to 15</span>
+
+<span class="cm"># 2. str — immutable</span>
+s = <span class="str">"hello"</span>
+<span class="cm"># s[0] = "H"   → TypeError: 'str' object does not support item assignment</span>
+s = <span class="str">"Hello"</span>          <span class="cm"># this creates a NEW string, doesn't modify "hello"</span></pre>
+    <p><b>Mutable examples:</b></p>
+<pre><span class="cm"># 1. list — mutable</span>
+nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+<span class="fn">print</span>(<span class="fn">id</span>(nums))    <span class="out"># e.g. 140712999</span>
+nums[<span class="num">0</span>] = <span class="num">99</span>        <span class="cm"># modify IN-PLACE</span>
+<span class="fn">print</span>(<span class="fn">id</span>(nums))    <span class="out"># SAME id — same object, just changed</span>
+<span class="fn">print</span>(nums)        <span class="out"># [99, 2, 3]</span>
+
+<span class="cm"># 2. dict — mutable</span>
+info = {<span class="str">"name"</span>: <span class="str">"Alice"</span>}
+info[<span class="str">"age"</span>] = <span class="num">21</span>    <span class="cm"># add a new key in-place</span>
+<span class="fn">print</span>(info)        <span class="out"># {'name': 'Alice', 'age': 21}</span></pre>
+    <div class="info-box">💡 <b>Key rule:</b> Immutable objects are hashable and can be used as dictionary keys or set elements. Mutable objects cannot.</div>
+  </div>
+
+  <!-- Q31: String declaration -->
+  <div class="card" id="q31">
+    <div class="q-label">Question 31</div>
+    <h2>Ways to declare a string in Python — single, double, and triple quotes</h2>
+    <p>Python provides multiple ways to create string literals, each with its own use case:</p>
+    <table>
+      <tr><th>Quote Style</th><th>Syntax</th><th>Best Used When</th></tr>
+      <tr><td>Single quotes</td><td><code>'text'</code></td><td>General purpose; avoids escaping when text contains double quotes</td></tr>
+      <tr><td>Double quotes</td><td><code>"text"</code></td><td>General purpose; avoids escaping when text contains apostrophes</td></tr>
+      <tr><td>Triple single</td><td><code>'''text'''</code></td><td>Multi-line strings, docstrings</td></tr>
+      <tr><td>Triple double</td><td><code>"""text"""</code></td><td>Multi-line strings, docstrings (PEP 257 preferred)</td></tr>
+    </table>
+<pre><span class="cm"># Single quotes</span>
+s1 = <span class="str">'Hello, World!'</span>
+s2 = <span class="str">'She said "hi" to me'</span>   <span class="cm"># no escaping needed for "</span>
+
+<span class="cm"># Double quotes</span>
+s3 = <span class="str">"Hello, World!"</span>
+s4 = <span class="str">"It's a sunny day"</span>      <span class="cm"># no escaping needed for '</span>
+
+<span class="cm"># Triple quotes — multi-line strings</span>
+s5 = <span class="str">"""This is line one.
+This is line two.
+This is line three."""</span>
+<span class="fn">print</span>(s5)
+<span class="out"># This is line one.
+# This is line two.
+# This is line three.</span>
+
+<span class="cm"># Triple quotes as docstrings</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="str">"""Return a greeting message for the given name."""</span>
+    <span class="kw">return</span> <span class="str">f"Hello, {name}!"</span>
+
+<span class="cm"># Escape sequences still work within any quote style</span>
+s6 = <span class="str">'It\'s fine'</span>            <span class="cm"># backslash escape</span>
+s7 = <span class="str">"Line1\nLine2"</span>          <span class="cm"># \n = newline</span>
+s8 = <span class="str">r"C:\Users\Alice"</span>       <span class="cm"># raw string — backslashes NOT treated as escapes</span></pre>
+    <div class="info-box">💡 Single and double quotes are interchangeable for single-line strings. Triple quotes preserve literal newlines and are the standard for <b>docstrings</b> (PEP 257).</div>
+  </div>
+
+  <!-- Q32: String indexing and slicing -->
+  <div class="card" id="q32">
+    <div class="q-label">Question 32</div>
+    <h2>String indexing and slicing — syntax, examples, and negative indices</h2>
+    <p>Strings in Python are <b>ordered sequences</b> of characters. Each character has a positional index starting from <b>0</b> (forward) or <b>-1</b> (backward from the end).</p>
+    <div class="syntax-label">Indexing Syntax</div>
+<pre>string[index]        <span class="cm"># returns single character</span></pre>
+    <div class="syntax-label">Slicing Syntax</div>
+<pre>string[start : stop : step]
+<span class="cm"># start — index to begin (inclusive), default 0
+# stop  — index to end   (exclusive), default end of string
+# step  — how many to skip, default 1</span></pre>
+<pre>s = <span class="str">"PYTHON"</span>
+<span class="cm">#   P  Y  T  H  O  N
+#   0  1  2  3  4  5   ← positive indices
+#  -6 -5 -4 -3 -2 -1   ← negative indices</span>
+
+<span class="cm"># Positive indexing</span>
+<span class="fn">print</span>(s[<span class="num">0</span>])       <span class="out"># P</span>
+<span class="fn">print</span>(s[<span class="num">3</span>])       <span class="out"># H</span>
+<span class="fn">print</span>(s[<span class="num">5</span>])       <span class="out"># N</span>
+
+<span class="cm"># Negative indexing — counts from the end</span>
+<span class="fn">print</span>(s[-<span class="num">1</span>])      <span class="out"># N  (last character)</span>
+<span class="fn">print</span>(s[-<span class="num">3</span>])      <span class="out"># H</span>
+<span class="fn">print</span>(s[-<span class="num">6</span>])      <span class="out"># P  (first character)</span>
+
+<span class="cm"># Slicing — extract substrings</span>
+<span class="fn">print</span>(s[<span class="num">0</span>:<span class="num">3</span>])     <span class="out"># PYT   (index 0,1,2 — stop 3 is excluded)</span>
+<span class="fn">print</span>(s[<span class="num">2</span>:])      <span class="out"># THON  (from index 2 to end)</span>
+<span class="fn">print</span>(s[:<span class="num">4</span>])      <span class="out"># PYTH  (from start to index 3)</span>
+<span class="fn">print</span>(s[::])      <span class="out"># PYTHON (entire string)</span>
+<span class="fn">print</span>(s[::<span class="num">2</span>])     <span class="out"># PTO   (every 2nd character)</span>
+<span class="fn">print</span>(s[::-<span class="num">1</span>])    <span class="out"># NOHTYP (reversed!)</span>
+
+<span class="cm"># Negative slicing</span>
+<span class="fn">print</span>(s[-<span class="num">3</span>:])     <span class="out"># HON  (last 3 characters)</span>
+<span class="fn">print</span>(s[-<span class="num">4</span>:-<span class="num">1</span>])   <span class="out"># THO</span></pre>
+    <div class="info-box">💡 <b>Negative indices</b> are a shortcut for counting from the end. <code>s[-1]</code> is equivalent to <code>s[len(s)-1]</code>. Slicing never raises an IndexError — out-of-range values are clipped to the string bounds.</div>
+  </div>
+
+  <!-- Q33: input() always returns string -->
+  <div class="card" id="q33">
+    <div class="q-label">Question 33</div>
+    <h2>Why does input() always return a string? Taking integer or float input</h2>
+    <p>The built-in <code>input()</code> function reads whatever the user types from the keyboard as <b>raw text</b>. Since keyboard input is inherently text-based (a stream of characters), Python has no way of knowing whether the user intends to type a number, a date, or a name — so it returns everything as a <b>string (<code>str</code>)</b> by default.</p>
+    <p>This design is deliberate: returning <code>str</code> always is <b>safe and consistent</b>. If Python tried to auto-detect the type, it could silently misinterpret ambiguous input (e.g., <code>"007"</code> as the integer <code>7</code>, losing the leading zero).</p>
+<pre><span class="cm"># input() always returns str</span>
+value = <span class="fn">input</span>(<span class="str">"Enter a number: "</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(value))    <span class="out"># &lt;class 'str'&gt;  — even if user types 42</span>
+
+<span class="cm"># ❌ Arithmetic fails on str</span>
+<span class="cm"># print(value + 10)    → TypeError: can only concatenate str (not "int") to str</span>
+
+<span class="cm"># ✅ Taking integer input — wrap with int()</span>
+age = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter your age: "</span>))
+<span class="fn">print</span>(<span class="fn">type</span>(age))      <span class="out"># &lt;class 'int'&gt;</span>
+<span class="fn">print</span>(age + <span class="num">1</span>)        <span class="out"># works correctly</span>
+
+<span class="cm"># ✅ Taking float input — wrap with float()</span>
+price = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Enter price: "</span>))
+<span class="fn">print</span>(<span class="fn">type</span>(price))    <span class="out"># &lt;class 'float'&gt;</span>
+
+<span class="cm"># ✅ Safe input with error handling</span>
+<span class="kw">try</span>:
+    marks = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter marks: "</span>))
+<span class="kw">except</span> ValueError:
+    <span class="fn">print</span>(<span class="str">"Please enter a valid integer!"</span>)
+
+<span class="cm"># ✅ Taking multiple inputs on one line</span>
+a, b = <span class="fn">map</span>(<span class="fn">int</span>, <span class="fn">input</span>(<span class="str">"Enter two numbers: "</span>).<span class="fn">split</span>())
+<span class="fn">print</span>(a + b)</pre>
+    <div class="warn-box">⚠️ If the user enters non-numeric text (e.g., "hello") and you wrap with <code>int()</code>, Python raises a <b>ValueError</b>. Always use try-except for robust input handling.</div>
+  </div>
+
+  <!-- Q34: Strings are immutable -->
+  <div class="card" id="q34">
+    <div class="q-label">Question 34</div>
+    <h2>Why are strings immutable in Python? — with example</h2>
+    <p>A string is <b>immutable</b> because once created, its content <b>cannot be changed</b>. You cannot modify, insert, or delete individual characters. Any operation that appears to "modify" a string actually creates a <b>new string object</b>.</p>
+    <p><b>Why are strings made immutable?</b></p>
+    <ul>
+      <li><b>Hashability</b> — Immutable strings can be used as dictionary keys and set elements. If strings could change, their hash would change, breaking dictionaries.</li>
+      <li><b>Safety</b> — String interning: Python reuses (caches) identical string literals. If strings were mutable, modifying one copy would affect all references.</li>
+      <li><b>Performance</b> — Fixed-size objects are easier to manage in memory and optimize.</li>
+    </ul>
+<pre>s = <span class="str">"hello"</span>
+
+<span class="cm"># ❌ Trying to change a character — TypeError</span>
+<span class="cm"># s[0] = "H"   → TypeError: 'str' object does not support item assignment</span>
+
+<span class="cm"># ❌ Trying to delete a character — TypeError</span>
+<span class="cm"># del s[1]     → TypeError: 'str' object doesn't support item deletion</span>
+
+<span class="cm"># ✅ What looks like modification is actually creating a NEW string</span>
+s = <span class="str">"hello"</span>
+original_id = <span class="fn">id</span>(s)
+s = <span class="str">"H"</span> + s[<span class="num">1</span>:]        <span class="cm"># creates brand new string "Hello"</span>
+<span class="fn">print</span>(s)              <span class="out"># Hello</span>
+<span class="fn">print</span>(<span class="fn">id</span>(s) == original_id)   <span class="out"># False — it's a different object!</span>
+
+<span class="cm"># String methods also return new strings</span>
+s = <span class="str">"hello"</span>
+upper_s = s.<span class="fn">upper</span>()
+<span class="fn">print</span>(s)              <span class="out"># hello  — original unchanged</span>
+<span class="fn">print</span>(upper_s)        <span class="out"># HELLO  — new string</span>
+
+<span class="cm"># If you need mutable character sequences, use a list</span>
+chars = <span class="fn">list</span>(<span class="str">"hello"</span>)  <span class="out"># ['h', 'e', 'l', 'l', 'o']</span>
+chars[<span class="num">0</span>] = <span class="str">"H"</span>
+result = <span class="str">""</span>.<span class="fn">join</span>(chars)
+<span class="fn">print</span>(result)         <span class="out"># Hello</span></pre>
+    <div class="success-box">✅ <b>Summary:</b> You can never change the characters of an existing string — only create a new one. This is the core meaning of immutability.</div>
+  </div>
+
+  <!-- Q35: Tuple -->
+  <div class="card" id="q35">
+    <div class="q-label">Question 35</div>
+    <h2>What is a tuple? How it differs from a list — syntax, mutability, use cases</h2>
+    <p>A <b>tuple</b> is an ordered, <b>immutable</b> sequence of elements. Like lists, tuples can hold items of different data types. Unlike lists, once created, a tuple's contents <b>cannot be changed</b> (no adding, removing, or modifying elements).</p>
+    <table>
+      <tr><th>Feature</th><th>List</th><th>Tuple</th></tr>
+      <tr><td>Syntax</td><td><code>[1, 2, 3]</code> — square brackets</td><td><code>(1, 2, 3)</code> — parentheses (optional)</td></tr>
+      <tr><td>Mutability</td><td>Mutable — can be modified</td><td>Immutable — cannot be modified</td></tr>
+      <tr><td>Can be dict key?</td><td>No (unhashable)</td><td>Yes (hashable, if elements are too)</td></tr>
+      <tr><td>Methods</td><td>Many: append, insert, remove, sort, pop…</td><td>Only 2: count(), index()</td></tr>
+      <tr><td>Performance</td><td>Slightly slower (mutable overhead)</td><td>Slightly faster, less memory</td></tr>
+      <tr><td>Use case</td><td>Collections that change (shopping cart, log)</td><td>Fixed data: coordinates, RGB, DB records</td></tr>
+    </table>
+<pre><span class="cm"># List — mutable</span>
+my_list = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+my_list[<span class="num">0</span>] = <span class="num">99</span>       <span class="cm"># ✅ allowed</span>
+
+<span class="cm"># Tuple — immutable</span>
+my_tuple = (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>)
+<span class="cm"># my_tuple[0] = 99   → TypeError: 'tuple' object does not support item assignment</span>
+
+<span class="cm"># Tuple without parentheses (tuple packing)</span>
+point = <span class="num">10</span>, <span class="num">20</span>
+<span class="fn">print</span>(<span class="fn">type</span>(point))   <span class="out"># &lt;class 'tuple'&gt;</span>
+
+<span class="cm"># Single-element tuple — needs trailing comma!</span>
+one = (<span class="num">42</span>,)           <span class="cm"># tuple</span>
+not_one = (<span class="num">42</span>)        <span class="cm"># just int — parentheses are grouping, not tuple syntax</span>
+<span class="fn">print</span>(<span class="fn">type</span>(one))      <span class="out"># &lt;class 'tuple'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(not_one))  <span class="out"># &lt;class 'int'&gt;</span>
+
+<span class="cm"># Tuples as dict keys (valid because hashable)</span>
+locations = {(<span class="num">23.0</span>, <span class="num">72.5</span>): <span class="str">"Ahmedabad"</span>, (<span class="num">19.0</span>, <span class="num">72.8</span>): <span class="str">"Mumbai"</span>}
+<span class="fn">print</span>(locations[(<span class="num">23.0</span>, <span class="num">72.5</span>)])   <span class="out"># Ahmedabad</span></pre>
+    <div class="info-box">💡 Use a <b>tuple</b> when data is fixed and should not change (coordinates, RGB colors, database rows). Use a <b>list</b> when data needs to grow, shrink, or be reordered.</div>
+  </div>
+
+  <!-- Q36: Tuple packing and unpacking -->
+  <div class="card" id="q36">
+    <div class="q-label">Question 36</div>
+    <h2>Tuple packing and unpacking — and why unpacking is useful with functions</h2>
+    <p><b>Tuple packing</b> is the process of grouping multiple values into a single tuple (automatically, without explicit parentheses). <b>Tuple unpacking</b> is the reverse — assigning each element of a tuple to separate variables in one statement.</p>
+<pre><span class="cm"># Tuple PACKING — multiple values → one tuple</span>
+person = <span class="str">"Alice"</span>, <span class="num">21</span>, <span class="str">"Ahmedabad"</span>
+<span class="fn">print</span>(person)          <span class="out"># ('Alice', 21, 'Ahmedabad')</span>
+<span class="fn">print</span>(<span class="fn">type</span>(person))    <span class="out"># &lt;class 'tuple'&gt;</span>
+
+<span class="cm"># Tuple UNPACKING — one tuple → separate variables</span>
+name, age, city = person
+<span class="fn">print</span>(name)    <span class="out"># Alice</span>
+<span class="fn">print</span>(age)     <span class="out"># 21</span>
+<span class="fn">print</span>(city)    <span class="out"># Ahmedabad</span>
+
+<span class="cm"># Swapping variables using tuple unpacking (no temp variable needed!)</span>
+a, b = <span class="num">10</span>, <span class="num">20</span>
+a, b = b, a
+<span class="fn">print</span>(a, b)    <span class="out"># 20 10</span>
+
+<span class="cm"># Extended unpacking with * (star)</span>
+first, *rest = (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>)
+<span class="fn">print</span>(first)   <span class="out"># 1</span>
+<span class="fn">print</span>(rest)    <span class="out"># [2, 3, 4, 5]</span></pre>
+    <hr class="divider">
+    <p><b>Why unpacking is especially useful when functions return multiple values:</b></p>
+    <p>Python functions can return multiple values — Python automatically packs them into a tuple. Unpacking lets the caller receive each value into its own named variable, making the code readable and avoiding awkward indexing like <code>result[0]</code>.</p>
+<pre><span class="cm"># Function returning multiple values (returns a tuple implicitly)</span>
+<span class="kw">def</span> <span class="fn">min_max</span>(numbers):
+    <span class="kw">return</span> <span class="fn">min</span>(numbers), <span class="fn">max</span>(numbers)   <span class="cm"># packs into tuple</span>
+
+<span class="cm"># ❌ Without unpacking — awkward</span>
+result = <span class="fn">min_max</span>([<span class="num">3</span>, <span class="num">1</span>, <span class="num">7</span>, <span class="num">2</span>])
+<span class="fn">print</span>(result[<span class="num">0</span>], result[<span class="num">1</span>])  <span class="out"># 1 7</span>
+
+<span class="cm"># ✅ With unpacking — clean and named</span>
+low, high = <span class="fn">min_max</span>([<span class="num">3</span>, <span class="num">1</span>, <span class="num">7</span>, <span class="num">2</span>])
+<span class="fn">print</span>(<span class="str">f"Min: {low}, Max: {high}"</span>)  <span class="out"># Min: 1, Max: 7</span></pre>
+    <div class="success-box">✅ Tuple unpacking makes multi-return functions feel natural and self-documenting. It's the Pythonic way to handle multiple return values.</div>
+  </div>
+
+  <!-- Q37: Tuple with mutable objects -->
+  <div class="card" id="q37">
+    <div class="q-label">Question 37</div>
+    <h2>Can a tuple contain mutable objects? What happens if you modify them?</h2>
+    <p>Yes — a tuple <b>can contain mutable objects</b> (like lists or dicts). The tuple's <b>immutability applies to its references</b>, not to the objects those references point to. The tuple cannot be made to point to a different list, but the list itself can still be modified.</p>
+    <div class="info-box">Think of a tuple as a row of fixed pegs. Each peg is locked in place — you cannot add, remove, or replace a peg. But if a peg holds a bag (a list), you can still add or remove items from that bag.</div>
+<pre>t = (<span class="num">1</span>, [<span class="num">2</span>, <span class="num">3</span>], <span class="str">"hello"</span>)
+
+<span class="cm"># ❌ Cannot replace the list with something else</span>
+<span class="cm"># t[1] = [99, 100]   → TypeError: 'tuple' object does not support item assignment</span>
+
+<span class="cm"># ✅ BUT — can modify the list itself (the object it refers to)</span>
+t[<span class="num">1</span>].<span class="fn">append</span>(<span class="num">99</span>)
+<span class="fn">print</span>(t)           <span class="out"># (1, [2, 3, 99], 'hello')  — tuple "changed"!</span>
+
+t[<span class="num">1</span>][<span class="num">0</span>] = <span class="num">999</span>
+<span class="fn">print</span>(t)           <span class="out"># (1, [999, 3, 99], 'hello')</span>
+
+<span class="cm"># The tuple still holds the SAME list object — just the list's contents changed</span>
+<span class="fn">print</span>(<span class="fn">id</span>(t[<span class="num">1</span>]))    <span class="out"># same id before and after — same list object</span></pre>
+    <div class="warn-box">⚠️ A tuple containing mutable elements is <b>not hashable</b> and therefore cannot be used as a dictionary key — even though the tuple itself is technically immutable. <br><code>hash(t)  → TypeError: unhashable type: 'list'</code></div>
+  </div>
+
+  <!-- Q38: Lists are mutable sequences -->
+  <div class="card" id="q38">
+    <div class="q-label">Question 38</div>
+    <h2>Why are lists called mutable sequences? — aliasing and shared references</h2>
+    <p>Lists are called <b>mutable sequences</b> because they are <b>ordered</b> (sequence) and their contents can be <b>changed in-place</b> (mutable) — elements can be added, removed, or modified without creating a new object.</p>
+    <p>A key consequence of mutability is <b>aliasing</b>: when you assign one list variable to another, both variables point to the <b>same object</b> in memory. Modifying the list through one reference affects all references.</p>
+<pre><span class="cm"># Demonstrating aliasing — shared reference</span>
+a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+b = a               <span class="cm"># b is NOT a copy — b points to the same list</span>
+
+<span class="fn">print</span>(<span class="fn">id</span>(a) == <span class="fn">id</span>(b))   <span class="out"># True — same object in memory</span>
+
+b[<span class="num">0</span>] = <span class="num">999</span>          <span class="cm"># modify through b</span>
+<span class="fn">print</span>(a)            <span class="out"># [999, 2, 3]  ← a is affected too!</span>
+<span class="fn">print</span>(b)            <span class="out"># [999, 2, 3]</span>
+
+b.<span class="fn">append</span>(<span class="num">4</span>)
+<span class="fn">print</span>(a)            <span class="out"># [999, 2, 3, 4]  ← still both refer to same list</span>
+
+<span class="cm"># ✅ To avoid aliasing — make a copy</span>
+a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+b = a.<span class="fn">copy</span>()        <span class="cm"># shallow copy — b is a new list</span>
+b[<span class="num">0</span>] = <span class="num">999</span>
+<span class="fn">print</span>(a)            <span class="out"># [1, 2, 3]   ← a is unaffected</span>
+<span class="fn">print</span>(b)            <span class="out"># [999, 2, 3]</span>
+
+<span class="cm"># Other ways to copy a list</span>
+c = a[:]            <span class="cm"># slice copy</span>
+d = <span class="fn">list</span>(a)         <span class="cm"># constructor copy</span></pre>
+    <div class="warn-box">⚠️ <code>b = a</code> does NOT copy the list — it creates a second <b>alias</b> (reference) to the same list. Always use <code>.copy()</code>, slicing <code>[:]</code>, or <code>list()</code> when you need an independent copy.</div>
+  </div>
+
+  <!-- Q39: append vs extend -->
+  <div class="card" id="q39">
+    <div class="q-label">Question 39</div>
+    <h2>append() vs extend() — differences with examples</h2>
+    <table>
+      <tr><th>Feature</th><th>append()</th><th>extend()</th></tr>
+      <tr><td>Purpose</td><td>Adds a <b>single item</b> to the end of the list</td><td>Adds <b>each element</b> of an iterable to the end</td></tr>
+      <tr><td>Argument</td><td>Any object (int, str, list, etc.)</td><td>Any iterable (list, tuple, str, range, etc.)</td></tr>
+      <tr><td>List length</td><td>Increases by exactly 1</td><td>Increases by the length of the iterable</td></tr>
+      <tr><td>If list is passed</td><td>The list is added as a <b>single nested element</b></td><td>The list's <b>elements</b> are added individually</td></tr>
+      <tr><td>Returns</td><td><code>None</code> (modifies in-place)</td><td><code>None</code> (modifies in-place)</td></tr>
+    </table>
+<pre>nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+
+<span class="cm"># append — adds the argument as ONE item</span>
+nums.<span class="fn">append</span>(<span class="num">4</span>)
+<span class="fn">print</span>(nums)         <span class="out"># [1, 2, 3, 4]</span>
+
+nums.<span class="fn">append</span>([<span class="num">5</span>, <span class="num">6</span>])  <span class="cm"># adds the LIST as a single nested item</span>
+<span class="fn">print</span>(nums)         <span class="out"># [1, 2, 3, 4, [5, 6]]</span>
+<span class="fn">print</span>(<span class="fn">len</span>(nums))    <span class="out"># 5</span>
+
+<span class="cm"># Reset</span>
+nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+
+<span class="cm"># extend — unpacks and adds each element of the iterable</span>
+nums.<span class="fn">extend</span>([<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>])
+<span class="fn">print</span>(nums)         <span class="out"># [1, 2, 3, 4, 5, 6]</span>
+<span class="fn">print</span>(<span class="fn">len</span>(nums))    <span class="out"># 6</span>
+
+nums.<span class="fn">extend</span>(<span class="str">"AB"</span>)    <span class="cm"># string is iterable — each char added</span>
+<span class="fn">print</span>(nums)         <span class="out"># [1, 2, 3, 4, 5, 6, 'A', 'B']</span>
+
+nums.<span class="fn">extend</span>((<span class="num">7</span>, <span class="num">8</span>)) <span class="cm"># works with tuples too</span>
+<span class="fn">print</span>(nums)         <span class="out"># [1, 2, 3, 4, 5, 6, 'A', 'B', 7, 8]</span></pre>
+    <div class="success-box">✅ <b>Rule of thumb:</b> Use <code>append()</code> to add a single item (including adding a list as a nested element). Use <code>extend()</code> to merge another collection into the list element by element.</div>
+  </div>
+
+  <!-- Q40: Dictionary and hash table -->
+  <div class="card" id="q40">
+    <div class="q-label">Question 40</div>
+    <h2>What is a dictionary? Internal implementation (hash table) and why keys must be immutable</h2>
+    <p>A <b>dictionary</b> (<code>dict</code>) is an <b>unordered* collection of key-value pairs</b>. It provides very fast lookup, insertion, and deletion — all in average <b>O(1)</b> time. Dictionaries are the most widely-used mapping type in Python.</p>
+    <p><small>*As of Python 3.7+, dictionaries maintain <b>insertion order</b> as an implementation detail (and officially guaranteed from 3.7).</small></p>
+    <hr class="divider">
+    <p><b>Internal Implementation — Hash Table:</b></p>
+    <p>Python dictionaries are implemented as <b>hash tables</b>. Here is how they work:</p>
+    <ol>
+      <li>When you insert a key-value pair, Python calls <code>hash(key)</code> to compute an integer <b>hash value</b>.</li>
+      <li>The hash value determines the <b>bucket (slot)</b> where the value is stored in an internal array.</li>
+      <li>On lookup (<code>d[key]</code>), Python computes <code>hash(key)</code> again and jumps directly to that slot — no scanning needed, hence O(1).</li>
+      <li>When two keys produce the same hash (<b>collision</b>), Python resolves it using <b>open addressing</b> (probing adjacent slots).</li>
+    </ol>
+    <p><b>Why keys must be immutable (hashable):</b></p>
+    <p>The hash value of a key must remain <b>constant</b> for the lifetime of the key in the dictionary. If a key could change, its hash would change, and Python would look in the wrong slot — losing the value entirely. Immutable types (<code>int</code>, <code>str</code>, <code>tuple</code> of immutables) have stable hashes. Mutable types (<code>list</code>, <code>dict</code>, <code>set</code>) do not support hashing at all.</p>
+<pre><span class="cm"># Creating a dictionary</span>
+student = {<span class="str">"name"</span>: <span class="str">"Alice"</span>, <span class="str">"age"</span>: <span class="num">21</span>, <span class="str">"gpa"</span>: <span class="num">9.1</span>}
+
+<span class="cm"># ✅ Valid key types (immutable/hashable)</span>
+d = {<span class="num">1</span>: <span class="str">"int key"</span>, <span class="str">"x"</span>: <span class="str">"str key"</span>, (<span class="num">1</span>, <span class="num">2</span>): <span class="str">"tuple key"</span>}
+
+<span class="cm"># ❌ Invalid key types (mutable/unhashable)</span>
+<span class="cm"># d = {[1, 2]: "list key"}   → TypeError: unhashable type: 'list'</span>
+<span class="cm"># d = {{1: 2}: "dict key"}   → TypeError: unhashable type: 'dict'</span>
+
+<span class="cm"># hash() values for immutable types</span>
+<span class="fn">print</span>(<span class="fn">hash</span>(<span class="str">"hello"</span>))    <span class="out"># consistent within a session</span>
+<span class="fn">print</span>(<span class="fn">hash</span>(<span class="num">42</span>))         <span class="out"># 42</span>
+<span class="fn">print</span>(<span class="fn">hash</span>((<span class="num">1</span>, <span class="num">2</span>)))     <span class="out"># some integer</span>
+<span class="cm"># hash([1, 2])  → TypeError: unhashable type: 'list'</span></pre>
+  </div>
+
+  <!-- Q41: [] vs get() -->
+  <div class="card" id="q41">
+    <div class="q-label">Question 41</div>
+    <h2>Accessing dict values: square brackets [] vs get() — advantages of get()</h2>
+    <table>
+      <tr><th>Feature</th><th><code>d[key]</code></th><th><code>d.get(key, default)</code></th></tr>
+      <tr><td>Key exists</td><td>Returns the value</td><td>Returns the value</td></tr>
+      <tr><td>Key missing</td><td>Raises <b>KeyError</b></td><td>Returns <code>None</code> (or a custom default)</td></tr>
+      <tr><td>Default value</td><td>Not possible without try-except</td><td>Specify as second argument</td></tr>
+      <tr><td>Use case</td><td>When key is guaranteed to exist</td><td>When key may or may not exist</td></tr>
+      <tr><td>Safety</td><td>Risky — crashes on missing key</td><td>Safe — never raises KeyError</td></tr>
+    </table>
+<pre>student = {<span class="str">"name"</span>: <span class="str">"Alice"</span>, <span class="str">"age"</span>: <span class="num">21</span>}
+
+<span class="cm"># ✅ [] — works fine when key exists</span>
+<span class="fn">print</span>(student[<span class="str">"name"</span>])       <span class="out"># Alice</span>
+
+<span class="cm"># ❌ [] — crashes when key is missing</span>
+<span class="cm"># print(student["gpa"])  → KeyError: 'gpa'</span>
+
+<span class="cm"># ✅ get() — safe when key may be missing</span>
+<span class="fn">print</span>(student.<span class="fn">get</span>(<span class="str">"name"</span>))       <span class="out"># Alice</span>
+<span class="fn">print</span>(student.<span class="fn">get</span>(<span class="str">"gpa"</span>))         <span class="out"># None  (key missing, no crash)</span>
+<span class="fn">print</span>(student.<span class="fn">get</span>(<span class="str">"gpa"</span>, <span class="num">0.0</span>))    <span class="out"># 0.0   (custom default returned)</span>
+<span class="fn">print</span>(student.<span class="fn">get</span>(<span class="str">"city"</span>, <span class="str">"N/A"</span>)) <span class="out"># N/A</span>
+
+<span class="cm"># Practical use: counting word frequencies safely</span>
+words = [<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"apple"</span>, <span class="str">"cherry"</span>, <span class="str">"banana"</span>, <span class="str">"apple"</span>]
+freq = {}
+<span class="kw">for</span> word <span class="kw">in</span> words:
+    freq[word] = freq.<span class="fn">get</span>(word, <span class="num">0</span>) + <span class="num">1</span>
+<span class="fn">print</span>(freq)   <span class="out"># {'apple': 3, 'banana': 2, 'cherry': 1}</span></pre>
+    <div class="success-box">✅ <b>Best practice:</b> Use <code>get()</code> whenever a key might not exist. It avoids try-except boilerplate and makes the default value explicit and readable.</div>
+  </div>
+
+  <!-- Q42: Dictionary view objects -->
+  <div class="card" id="q42">
+    <div class="q-label">Question 42</div>
+    <h2>Dictionary view objects — keys(), values(), items() — behaviour and mutability</h2>
+    <p>The methods <code>keys()</code>, <code>values()</code>, and <code>items()</code> return <b>view objects</b> — not copies. They provide a live, <b>dynamic window</b> into the dictionary. When the dictionary changes, the view reflects the change automatically.</p>
+    <table>
+      <tr><th>Method</th><th>Returns</th><th>Element type</th></tr>
+      <tr><td><code>d.keys()</code></td><td>View of all keys</td><td><code>dict_keys</code></td></tr>
+      <tr><td><code>d.values()</code></td><td>View of all values</td><td><code>dict_values</code></td></tr>
+      <tr><td><code>d.items()</code></td><td>View of all key-value pairs</td><td><code>dict_items</code> of tuples</td></tr>
+    </table>
+<pre>d = {<span class="str">"a"</span>: <span class="num">1</span>, <span class="str">"b"</span>: <span class="num">2</span>, <span class="str">"c"</span>: <span class="num">3</span>}
+
+keys   = d.<span class="fn">keys</span>()
+values = d.<span class="fn">values</span>()
+items  = d.<span class="fn">items</span>()
+
+<span class="fn">print</span>(keys)    <span class="out"># dict_keys(['a', 'b', 'c'])</span>
+<span class="fn">print</span>(values)  <span class="out"># dict_values([1, 2, 3])</span>
+<span class="fn">print</span>(items)   <span class="out"># dict_items([('a', 1), ('b', 2), ('c', 3)])</span>
+
+<span class="cm"># Views are LIVE — they reflect dictionary changes immediately</span>
+d[<span class="str">"d"</span>] = <span class="num">4</span>
+<span class="fn">print</span>(keys)    <span class="out"># dict_keys(['a', 'b', 'c', 'd'])  ← updated automatically!</span>
+<span class="fn">print</span>(values)  <span class="out"># dict_values([1, 2, 3, 4])</span>
+
+<span class="cm"># Iterating with items() — most Pythonic way to loop over a dict</span>
+<span class="kw">for</span> key, value <span class="kw">in</span> d.<span class="fn">items</span>():
+    <span class="fn">print</span>(<span class="str">f"{key} → {value}"</span>)
+<span class="out"># a → 1
+# b → 2
+# c → 3
+# d → 4</span>
+
+<span class="cm"># Views are NOT independently mutable — cannot add/remove via view</span>
+<span class="cm"># keys.add("e")   → AttributeError: 'dict_keys' object has no attribute 'add'</span>
+
+<span class="cm"># Convert to list/set if you need a static snapshot</span>
+key_list = <span class="fn">list</span>(d.<span class="fn">keys</span>())     <span class="out"># ['a', 'b', 'c', 'd'] — static copy</span></pre>
+    <div class="info-box">💡 Views are memory-efficient because they don't duplicate data. They behave like <b>read-only windows</b> into the dict — iterable and up-to-date, but not independently modifiable. To get a static snapshot, convert with <code>list()</code> or <code>set()</code>.</div>
+  </div>
+
+  <!-- Q43: Sets -->
+  <div class="card" id="q43">
+    <div class="q-label">Question 43</div>
+    <h2>What is a set in Python? — mutability, ordering, and duplicates</h2>
+    <p>A <b>set</b> is an <b>unordered collection of unique elements</b>. It is the Python equivalent of the mathematical set. Sets are designed for fast membership testing and set operations like union, intersection, and difference.</p>
+    <table>
+      <tr><th>Characteristic</th><th>Details</th></tr>
+      <tr><td><b>Mutability</b></td><td>Sets are <b>mutable</b> — you can add or remove elements after creation. Use <code>frozenset</code> for an immutable version.</td></tr>
+      <tr><td><b>Ordering</b></td><td>Sets are <b>unordered</b> — elements have no guaranteed position. Indexing (<code>s[0]</code>) is not supported.</td></tr>
+      <tr><td><b>Duplicates</b></td><td>Sets <b>automatically eliminate duplicates</b> — each element can appear at most once.</td></tr>
+      <tr><td><b>Elements</b></td><td>Must be <b>hashable/immutable</b> (int, str, tuple). Lists and dicts cannot be set elements.</td></tr>
+    </table>
+<pre><span class="cm"># Creating a set</span>
+s = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>}
+<span class="fn">print</span>(<span class="fn">type</span>(s))    <span class="out"># &lt;class 'set'&gt;</span>
+
+<span class="cm"># Duplicates are automatically removed</span>
+s2 = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">3</span>, <span class="num">3</span>}
+<span class="fn">print</span>(s2)         <span class="out"># {1, 2, 3}</span>
+
+<span class="cm"># Common use: remove duplicates from a list</span>
+nums = [<span class="num">4</span>, <span class="num">2</span>, <span class="num">4</span>, <span class="num">7</span>, <span class="num">2</span>, <span class="num">9</span>]
+unique = <span class="fn">list</span>(<span class="fn">set</span>(nums))
+<span class="fn">print</span>(unique)     <span class="out"># [2, 4, 7, 9]  (order may vary)</span>
+
+<span class="cm"># Mutability — adding and removing</span>
+s = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>}
+s.<span class="fn">add</span>(<span class="num">4</span>)
+<span class="fn">print</span>(s)          <span class="out"># {1, 2, 3, 4}</span>
+s.<span class="fn">discard</span>(<span class="num">2</span>)      <span class="cm"># remove element; no error if missing</span>
+<span class="fn">print</span>(s)          <span class="out"># {1, 3, 4}</span>
+
+<span class="cm"># Set operations</span>
+A = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>}
+B = {<span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>}
+<span class="fn">print</span>(A | B)      <span class="out"># Union:        {1, 2, 3, 4, 5, 6}</span>
+<span class="fn">print</span>(A &amp; B)      <span class="out"># Intersection: {3, 4}</span>
+<span class="fn">print</span>(A - B)      <span class="out"># Difference:   {1, 2}</span>
+<span class="fn">print</span>(A ^ B)      <span class="out"># Symmetric diff: {1, 2, 5, 6}</span>
+
+<span class="cm"># Empty set — must use set(), NOT {} (that creates an empty dict!)</span>
+empty_set = <span class="fn">set</span>()
+empty_dict = {}
+<span class="fn">print</span>(<span class="fn">type</span>(empty_set))   <span class="out"># &lt;class 'set'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(empty_dict))  <span class="out"># &lt;class 'dict'&gt;</span></pre>
+    <div class="warn-box">⚠️ <code>{}</code> creates an empty <b>dict</b>, NOT an empty set. Always use <code>set()</code> for an empty set. Also, sets do NOT support indexing — use a list if you need ordered, indexed access.</div>
+  </div>
+
+  <!-- SECTION DIVIDER Part 4 -->
+  <div style="display:flex;align-items:center;gap:14px;margin:10px 0 28px;">
+    <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+    <div style="background:#3776ab;color:white;font-size:12px;font-weight:700;padding:6px 18px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;">Part 4 — Exceptions, Debugging &amp; Assertions</div>
+    <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+  </div>
+
+  <!-- Q44: Exception vs Syntax Error -->
+  <div class="card" id="q44">
+    <div class="q-label">Question 44</div>
+    <h2>What is an exception in Python? How is it different from a syntax error?</h2>
+    <p>An <b>exception</b> is an error that occurs <b>during the execution</b> (runtime) of a program — after the code has been successfully parsed. It disrupts the normal flow of the program and, if unhandled, causes the program to crash with a traceback.</p>
+    <p>A <b>syntax error</b>, by contrast, is detected <b>before the program runs</b>, during the parsing phase. Python cannot even begin executing the file if it contains a syntax error.</p>
+    <table>
+      <tr><th>Feature</th><th>Syntax Error</th><th>Exception (Runtime Error)</th></tr>
+      <tr><td>When detected</td><td>Before execution — at parse time</td><td>During execution — at runtime</td></tr>
+      <tr><td>Cause</td><td>Violates Python grammar rules</td><td>Invalid operation on valid code</td></tr>
+      <tr><td>Can be handled?</td><td>No — program won't start</td><td>Yes — with try-except blocks</td></tr>
+      <tr><td>Example</td><td><code>if x == 5</code> (missing colon)</td><td><code>10 / 0</code> (ZeroDivisionError)</td></tr>
+      <tr><td>Error class</td><td><code>SyntaxError</code></td><td>Subclass of <code>Exception</code></td></tr>
+    </table>
+<pre><span class="cm"># SYNTAX ERROR — detected before running, program never starts</span>
+<span class="cm"># for i in range(5)      ← missing colon
+#     print(i)
+# SyntaxError: expected ':'</span>
+
+<span class="cm"># EXCEPTION — code is valid Python, error happens at runtime</span>
+x = <span class="num">10</span>
+y = <span class="num">0</span>
+<span class="cm"># print(x / y)    → ZeroDivisionError: division by zero</span>
+
+name = <span class="str">"Alice"</span>
+<span class="cm"># print(name[100])  → IndexError: string index out of range</span>
+
+nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+<span class="cm"># print(nums["a"])  → TypeError: list indices must be integers</span></pre>
+    <div class="info-box">💡 <b>Common built-in exceptions:</b> <code>ValueError</code>, <code>TypeError</code>, <code>IndexError</code>, <code>KeyError</code>, <code>ZeroDivisionError</code>, <code>FileNotFoundError</code>, <code>AttributeError</code>, <code>NameError</code>, <code>OverflowError</code>, <code>RecursionError</code>. All inherit from the base class <code>Exception</code>.</div>
+  </div>
+
+  <!-- Q45: Three types of errors -->
+  <div class="card" id="q45">
+    <div class="q-label">Question 45</div>
+    <h2>Syntax errors, runtime errors, and logical errors — one example each</h2>
+    <p>Python programs can fail in three fundamentally different ways. Understanding which type of error you have determines how you fix it.</p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>1. Syntax Error</h4>
+        <p>Violation of Python's grammar rules. Caught by the parser before execution begins. The program cannot run at all.</p>
+      </div>
+      <div class="feature-item">
+        <h4>2. Runtime Error (Exception)</h4>
+        <p>Syntactically valid code that encounters an impossible operation during execution. The program starts but crashes.</p>
+      </div>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>3. Logical Error</h4>
+        <p>Code runs without crashing, but produces the <b>wrong result</b>. The most dangerous type — Python cannot detect it.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Detection Method</h4>
+        <p>Syntax: IDE/interpreter. Runtime: traceback at crash point. Logical: manual testing, code review, assertions.</p>
+      </div>
+    </div>
+<pre><span class="cm"># 1. SYNTAX ERROR — parser rejects the code</span>
+<span class="cm"># def greet(name)
+#     print("Hello", name)     ← SyntaxError: expected ':'</span>
+
+<span class="cm"># 2. RUNTIME ERROR — valid code, invalid operation at runtime</span>
+<span class="kw">def</span> <span class="fn">divide</span>(a, b):
+    <span class="kw">return</span> a / b
+
+<span class="fn">divide</span>(<span class="num">10</span>, <span class="num">0</span>)    <span class="out"># ZeroDivisionError: division by zero</span>
+<span class="cm"># Program crashes here — the line above is syntactically valid!</span>
+
+<span class="cm"># 3. LOGICAL ERROR — runs perfectly, gives wrong answer</span>
+<span class="kw">def</span> <span class="fn">celsius_to_fahrenheit</span>(c):
+    <span class="kw">return</span> c * <span class="num">9</span> / <span class="num">5</span> + <span class="num">32</span>    <span class="cm"># correct formula</span>
+
+<span class="kw">def</span> <span class="fn">celsius_to_fahrenheit_buggy</span>(c):
+    <span class="kw">return</span> c * <span class="num">9</span> / <span class="num">5</span> + <span class="num">23</span>    <span class="cm"># WRONG: 23 instead of 32 — logical error</span>
+
+<span class="fn">print</span>(<span class="fn">celsius_to_fahrenheit</span>(<span class="num">100</span>))         <span class="out"># 212.0  ✅ correct</span>
+<span class="fn">print</span>(<span class="fn">celsius_to_fahrenheit_buggy</span>(<span class="num">100</span>))   <span class="out"># 203.0  ❌ wrong, no error raised!</span></pre>
+    <div class="warn-box">⚠️ Logical errors are the hardest to find because Python gives no indication that anything went wrong. They require careful testing, print-based debugging, or unit tests to catch.</div>
+  </div>
+
+  <!-- Q46: print() debugging -->
+  <div class="card" id="q46">
+    <div class="q-label">Question 46</div>
+    <h2>Using print() for debugging — and its limitations</h2>
+    <p>The simplest debugging strategy is inserting <code>print()</code> statements at key points in the code to inspect variable values, confirm execution flow, or verify that a block is being reached. It requires no tools or setup and works everywhere.</p>
+<pre><span class="cm"># Typical print() debugging approach</span>
+<span class="kw">def</span> <span class="fn">calculate_discount</span>(price, discount_pct):
+    <span class="fn">print</span>(<span class="str">f"[DEBUG] price={price}, discount_pct={discount_pct}"</span>)   <span class="cm"># inspect inputs</span>
+    discount = price * discount_pct / <span class="num">100</span>
+    <span class="fn">print</span>(<span class="str">f"[DEBUG] discount amount={discount}"</span>)                   <span class="cm"># inspect intermediate</span>
+    final = price - discount
+    <span class="fn">print</span>(<span class="str">f"[DEBUG] final price={final}"</span>)                          <span class="cm"># inspect result</span>
+    <span class="kw">return</span> final
+
+<span class="fn">calculate_discount</span>(<span class="num">1000</span>, <span class="num">15</span>)
+<span class="out"># [DEBUG] price=1000, discount_pct=15
+# [DEBUG] discount amount=150.0
+# [DEBUG] final price=850.0</span>
+
+<span class="cm"># Checking if a code block is reached</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="kw">if</span> i % <span class="num">2</span> == <span class="num">0</span>:
+        <span class="fn">print</span>(<span class="str">f"[DEBUG] entering if-block, i={i}"</span>)</pre>
+    <hr class="divider">
+    <p><b>Limitations of print() debugging:</b></p>
+    <ul>
+      <li><b>Must be manually removed</b> — debug prints left in production code pollute output and can expose sensitive data.</li>
+      <li><b>Doesn't scale</b> — in large programs with many functions, adding and removing prints becomes tedious and error-prone.</li>
+      <li><b>No interactivity</b> — you cannot pause execution, inspect the call stack, or change variable values on the fly.</li>
+      <li><b>Alters I/O behavior</b> — in some programs, extra print output can interfere with piped data or file output.</li>
+      <li><b>No log levels</b> — no built-in way to toggle debug output off without deleting statements (unlike the <code>logging</code> module).</li>
+    </ul>
+    <div class="success-box">✅ <b>Better alternatives:</b> Use the <code>logging</code> module (supports levels: DEBUG, INFO, WARNING, ERROR) for production code. Use Python's built-in <code>pdb</code> debugger or IDE debuggers (VS Code, PyCharm) for interactive step-through debugging.</div>
+  </div>
+
+  <!-- Q47: try-except-else-finally -->
+  <div class="card" id="q47">
+    <div class="q-label">Question 47</div>
+    <h2>Complete try-except-else-finally syntax and execution flow</h2>
+    <div class="syntax-label">Complete Syntax</div>
+<pre><span class="kw">try</span>:
+    <span class="cm"># Code that might raise an exception</span>
+<span class="kw">except</span> ExceptionType1:
+    <span class="cm"># Runs if ExceptionType1 is raised</span>
+<span class="kw">except</span> ExceptionType2 <span class="kw">as</span> e:
+    <span class="cm"># Runs if ExceptionType2 is raised; e holds the exception object</span>
+<span class="kw">except</span>:
+    <span class="cm"># Catches ANY remaining exception (use sparingly)</span>
+<span class="kw">else</span>:
+    <span class="cm"># Runs ONLY if the try block completed WITHOUT any exception</span>
+<span class="kw">finally</span>:
+    <span class="cm"># ALWAYS runs — exception or not, return or not</span></pre>
+    <hr class="divider">
+    <p><b>Execution flow in different scenarios:</b></p>
+    <table>
+      <tr><th>Scenario</th><th>try</th><th>except</th><th>else</th><th>finally</th></tr>
+      <tr><td>No exception raised</td><td>✅ runs fully</td><td>❌ skipped</td><td>✅ runs</td><td>✅ always</td></tr>
+      <tr><td>Exception raised &amp; caught</td><td>⚠️ stops at error line</td><td>✅ matching block runs</td><td>❌ skipped</td><td>✅ always</td></tr>
+      <tr><td>Exception raised, not caught</td><td>⚠️ stops at error line</td><td>❌ no match</td><td>❌ skipped</td><td>✅ always, then crash</td></tr>
+    </table>
+<pre><span class="kw">def</span> <span class="fn">safe_divide</span>(a, b):
+    <span class="kw">try</span>:
+        result = a / b                     <span class="cm"># might raise ZeroDivisionError</span>
+        <span class="fn">print</span>(<span class="str">f"Result: {result}"</span>)
+    <span class="kw">except</span> ZeroDivisionError <span class="kw">as</span> e:
+        <span class="fn">print</span>(<span class="str">f"Error caught: {e}"</span>)
+    <span class="kw">except</span> TypeError <span class="kw">as</span> e:
+        <span class="fn">print</span>(<span class="str">f"Type error: {e}"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">"Division successful — no exception occurred"</span>)
+    <span class="kw">finally</span>:
+        <span class="fn">print</span>(<span class="str">"--- This always runs ---"</span>)
+
+<span class="fn">safe_divide</span>(<span class="num">10</span>, <span class="num">2</span>)
+<span class="out"># Result: 5.0
+# Division successful — no exception occurred
+# --- This always runs ---</span>
+
+<span class="fn">safe_divide</span>(<span class="num">10</span>, <span class="num">0</span>)
+<span class="out"># Error caught: division by zero
+# --- This always runs ---</span>
+
+<span class="fn">safe_divide</span>(<span class="num">10</span>, <span class="str">"x"</span>)
+<span class="out"># Type error: unsupported operand type(s) for /: 'int' and 'str'
+# --- This always runs ---</span></pre>
+  </div>
+
+  <!-- Q48: else clause -->
+  <div class="card" id="q48">
+    <div class="q-label">Question 48</div>
+    <h2>The else clause in exception handling — purpose and when it executes</h2>
+    <p>The <code>else</code> clause in a try-except block executes <b>only when the try block completes without raising any exception</b>. It is the "success path" — code that should only run if everything in try went smoothly.</p>
+    <p><b>Why have else at all?</b> You could put the success code inside the try block itself — but that would incorrectly catch exceptions from that success code too. The else clause lets you separate "risky code" (in try) from "code that runs on success but shouldn't be guarded" (in else).</p>
+    <table>
+      <tr><th>Where to put code</th><th>Why</th></tr>
+      <tr><td><code>try</code> block</td><td>Only the code that might raise the expected exception</td></tr>
+      <tr><td><code>else</code> block</td><td>Code that should run only on success, but whose exceptions should NOT be silently caught</td></tr>
+    </table>
+<pre><span class="cm"># Without else — overly broad try block</span>
+<span class="kw">try</span>:
+    num = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter a number: "</span>))
+    result = <span class="num">100</span> / num
+    <span class="fn">print</span>(<span class="str">f"100 / {num} = {result}"</span>)     <span class="cm"># if THIS raises, it's silently caught too!</span>
+<span class="kw">except</span> ValueError:
+    <span class="fn">print</span>(<span class="str">"Not a valid number"</span>)
+
+<span class="cm"># ✅ With else — precise and clean</span>
+<span class="kw">try</span>:
+    num = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter a number: "</span>))    <span class="cm"># ONLY this might raise ValueError</span>
+<span class="kw">except</span> ValueError:
+    <span class="fn">print</span>(<span class="str">"Not a valid number"</span>)
+<span class="kw">else</span>:
+    result = <span class="num">100</span> / num                    <span class="cm"># runs only if int() succeeded</span>
+    <span class="fn">print</span>(<span class="str">f"100 / {num} = {result}"</span>)
+
+<span class="cm"># Practical example: file reading</span>
+<span class="kw">try</span>:
+    f = <span class="fn">open</span>(<span class="str">"data.txt"</span>)
+<span class="kw">except</span> FileNotFoundError:
+    <span class="fn">print</span>(<span class="str">"File not found!"</span>)
+<span class="kw">else</span>:
+    content = f.<span class="fn">read</span>()          <span class="cm"># only runs if file opened successfully</span>
+    <span class="fn">print</span>(<span class="str">f"Read {len(content)} characters"</span>)
+    f.<span class="fn">close</span>()
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="str">"Attempted file operation"</span>)</pre>
+    <div class="success-box">✅ <b>Rule:</b> Put in <code>try</code> only what you expect might fail. Put the success-dependent logic in <code>else</code>. This makes your intent explicit and avoids accidentally swallowing unexpected exceptions.</div>
+  </div>
+
+  <!-- Q49: finally block -->
+  <div class="card" id="q49">
+    <div class="q-label">Question 49</div>
+    <h2>The finally block — purpose and why it runs even if an exception occurs</h2>
+    <p>The <code>finally</code> block contains code that <b>must always execute</b> — regardless of whether the try block succeeded, raised a caught exception, raised an uncaught exception, or even executed a <code>return</code> statement. Python guarantees it runs.</p>
+    <p><b>Primary purpose:</b> <b>cleanup and resource release</b> — closing files, releasing database connections, closing network sockets, releasing locks. If you open a resource, finally ensures it is closed even if something goes wrong.</p>
+    <table>
+      <tr><th>Scenario</th><th>finally runs?</th></tr>
+      <tr><td>try succeeds normally</td><td>✅ Yes</td></tr>
+      <tr><td>Exception raised and caught by except</td><td>✅ Yes</td></tr>
+      <tr><td>Exception raised and NOT caught (program crashes)</td><td>✅ Yes — before crash</td></tr>
+      <tr><td>return statement inside try or except</td><td>✅ Yes — before returning</td></tr>
+      <tr><td>break or continue inside try (in a loop)</td><td>✅ Yes</td></tr>
+    </table>
+<pre><span class="cm"># Classic use: guaranteed file closure</span>
+<span class="kw">try</span>:
+    f = <span class="fn">open</span>(<span class="str">"data.txt"</span>, <span class="str">"r"</span>)
+    data = f.<span class="fn">read</span>()
+    result = <span class="fn">int</span>(data) * <span class="num">2</span>    <span class="cm"># might raise ValueError</span>
+<span class="kw">except</span> ValueError:
+    <span class="fn">print</span>(<span class="str">"File does not contain a valid integer"</span>)
+<span class="kw">finally</span>:
+    f.<span class="fn">close</span>()                  <span class="cm"># ALWAYS closes the file, no matter what</span>
+    <span class="fn">print</span>(<span class="str">"File closed."</span>)
+
+<span class="cm"># finally runs even when a return is hit</span>
+<span class="kw">def</span> <span class="fn">test</span>():
+    <span class="kw">try</span>:
+        <span class="kw">return</span> <span class="str">"from try"</span>
+    <span class="kw">finally</span>:
+        <span class="fn">print</span>(<span class="str">"finally runs before return!"</span>)
+
+<span class="fn">print</span>(<span class="fn">test</span>())
+<span class="out"># finally runs before return!
+# from try</span>
+
+<span class="cm"># Database connection pattern</span>
+<span class="kw">def</span> <span class="fn">query_db</span>():
+    conn = <span class="kw">None</span>
+    <span class="kw">try</span>:
+        conn = <span class="fn">connect_to_db</span>()      <span class="cm"># open connection</span>
+        <span class="kw">return</span> conn.<span class="fn">execute</span>(<span class="str">"SELECT ..."</span>)
+    <span class="kw">except</span> DatabaseError <span class="kw">as</span> e:
+        <span class="fn">print</span>(<span class="str">f"DB error: {e}"</span>)
+    <span class="kw">finally</span>:
+        <span class="kw">if</span> conn:
+            conn.<span class="fn">close</span>()           <span class="cm"># always close the connection</span></pre>
+    <div class="info-box">💡 The <code>with</code> statement is the modern Pythonic way to handle resource cleanup (it calls <code>__exit__</code> automatically). But <code>finally</code> is still essential when you need finer control or when dealing with multiple resources.</div>
+  </div>
+
+  <!-- Q50: Multiple exceptions -->
+  <div class="card" id="q50">
+    <div class="q-label">Question 50</div>
+    <h2>Catching multiple exceptions in a single except block</h2>
+    <p>Python offers two syntactic approaches to handle multiple exception types. You can either catch them in a <b>single except with a tuple</b>, or use <b>separate except clauses</b> for different handling logic.</p>
+    <div class="syntax-label">Method 1 — Tuple in single except (same handling for all)</div>
+<pre><span class="kw">except</span> (ExceptionType1, ExceptionType2, ExceptionType3) <span class="kw">as</span> e:
+    <span class="cm"># handles all three the same way</span></pre>
+    <div class="syntax-label">Method 2 — Separate except clauses (different handling)</div>
+<pre><span class="kw">except</span> ExceptionType1 <span class="kw">as</span> e:
+    <span class="cm"># specific handling for type 1</span>
+<span class="kw">except</span> ExceptionType2 <span class="kw">as</span> e:
+    <span class="cm"># specific handling for type 2</span></pre>
+<pre><span class="cm"># Method 1: Tuple — same response for multiple exception types</span>
+<span class="kw">def</span> <span class="fn">parse_input</span>(value):
+    <span class="kw">try</span>:
+        result = <span class="fn">int</span>(value) / <span class="fn">int</span>(value)
+    <span class="kw">except</span> (ValueError, ZeroDivisionError) <span class="kw">as</span> e:
+        <span class="fn">print</span>(<span class="str">f"Input error ({type(e).__name__}): {e}"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">f"Result: {result}"</span>)
+
+<span class="fn">parse_input</span>(<span class="str">"abc"</span>)  <span class="out"># Input error (ValueError): invalid literal for int() ...</span>
+<span class="fn">parse_input</span>(<span class="str">"0"</span>)    <span class="out"># Input error (ZeroDivisionError): division by zero</span>
+
+<span class="cm"># Method 2: Separate clauses — tailored response per exception type</span>
+<span class="kw">def</span> <span class="fn">read_file_data</span>(filename):
+    <span class="kw">try</span>:
+        <span class="kw">with</span> <span class="fn">open</span>(filename) <span class="kw">as</span> f:
+            <span class="kw">return</span> <span class="fn">int</span>(f.<span class="fn">read</span>().<span class="fn">strip</span>())
+    <span class="kw">except</span> FileNotFoundError:
+        <span class="fn">print</span>(<span class="str">f"'{filename}' does not exist"</span>)
+    <span class="kw">except</span> ValueError:
+        <span class="fn">print</span>(<span class="str">"File content is not a valid integer"</span>)
+    <span class="kw">except</span> PermissionError:
+        <span class="fn">print</span>(<span class="str">"You don't have permission to read this file"</span>)
+    <span class="kw">except</span> Exception <span class="kw">as</span> e:
+        <span class="fn">print</span>(<span class="str">f"Unexpected error: {e}"</span>)   <span class="cm"># catch-all for anything else</span></pre>
+    <div class="warn-box">⚠️ Python checks <code>except</code> clauses <b>top to bottom</b> and runs only the <b>first match</b>. Always put more specific exceptions before more general ones. Putting <code>except Exception</code> first would swallow all exceptions, hiding specific ones below it.</div>
+  </div>
+
+  <!-- Q51: Custom exceptions -->
+  <div class="card" id="q51">
+    <div class="q-label">Question 51</div>
+    <h2>Creating and raising custom exceptions — with example</h2>
+    <p>Python allows you to define your own exception classes by <b>inheriting from <code>Exception</code></b> (or any other built-in exception class). Custom exceptions let you create domain-specific error types that are meaningful to your application, making code easier to read and error-handling more precise.</p>
+    <div class="syntax-label">Steps to create a custom exception</div>
+    <ol>
+      <li>Define a class that inherits from <code>Exception</code> (or a subclass of it).</li>
+      <li>Optionally override <code>__init__</code> to accept custom messages or attributes.</li>
+      <li>Use <code>raise</code> to throw it like any built-in exception.</li>
+      <li>Catch it with <code>except YourException</code>.</li>
+    </ol>
+<pre><span class="cm"># Step 1: Define custom exception classes</span>
+<span class="kw">class</span> <span class="fn">InsufficientFundsError</span>(Exception):
+    <span class="str">"""Raised when a bank withdrawal exceeds the available balance."""</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, balance, amount):
+        <span class="kw">self</span>.balance = balance
+        <span class="kw">self</span>.amount  = amount
+        <span class="kw">super</span>().<span class="fn">__init__</span>(
+            <span class="str">f"Cannot withdraw ₹{amount}. Available balance: ₹{balance}"</span>
+        )
+
+<span class="kw">class</span> <span class="fn">InvalidAgeError</span>(Exception):
+    <span class="str">"""Raised when an age value is outside a valid range."""</span>
+    <span class="kw">pass</span>
+
+<span class="cm"># Step 2: Raise and catch the custom exceptions</span>
+<span class="kw">def</span> <span class="fn">withdraw</span>(balance, amount):
+    <span class="kw">if</span> amount <= <span class="num">0</span>:
+        <span class="kw">raise</span> ValueError(<span class="str">"Withdrawal amount must be positive"</span>)
+    <span class="kw">if</span> amount > balance:
+        <span class="kw">raise</span> InsufficientFundsError(balance, amount)  <span class="cm"># raise custom exception</span>
+    <span class="kw">return</span> balance - amount
+
+<span class="kw">try</span>:
+    new_balance = <span class="fn">withdraw</span>(<span class="num">500</span>, <span class="num">800</span>)
+<span class="kw">except</span> InsufficientFundsError <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="str">f"Transaction failed: {e}"</span>)
+    <span class="fn">print</span>(<span class="str">f"Shortfall: ₹{e.amount - e.balance}"</span>)    <span class="cm"># access custom attributes</span>
+<span class="out"># Transaction failed: Cannot withdraw ₹800. Available balance: ₹500
+# Shortfall: ₹300</span>
+
+<span class="cm"># Exception hierarchy example</span>
+<span class="kw">class</span> <span class="fn">AppError</span>(Exception): <span class="kw">pass</span>          <span class="cm"># base for all app errors</span>
+<span class="kw">class</span> <span class="fn">DatabaseError</span>(<span class="fn">AppError</span>): <span class="kw">pass</span>     <span class="cm"># specific DB error</span>
+<span class="kw">class</span> <span class="fn">NetworkError</span>(<span class="fn">AppError</span>): <span class="kw">pass</span>      <span class="cm"># specific network error</span>
+
+<span class="cm"># Can catch all app errors at once</span>
+<span class="kw">except</span> AppError <span class="kw">as</span> e:    <span class="cm"># catches DatabaseError and NetworkError too</span>
+    <span class="fn">print</span>(<span class="str">f"App error: {e}"</span>)</pre>
+    <div class="success-box">✅ <b>Best practice:</b> Create a base exception class for your module/application (e.g., <code>AppError</code>), then derive specific exceptions from it. This lets callers catch all your exceptions with one <code>except</code>, or individual ones for fine-grained handling.</div>
+  </div>
+
+  <!-- Q52: assert statement -->
+  <div class="card" id="q52">
+    <div class="q-label">Question 52</div>
+    <h2>What is an assertion in Python? — syntax of the assert statement</h2>
+    <p>An <b>assertion</b> is a sanity check — a statement that verifies an assumption you believe must be true at a specific point in your code. If the condition is <b>True</b>, nothing happens and execution continues. If the condition is <b>False</b>, Python raises an <code>AssertionError</code> immediately.</p>
+    <p>Assertions are mainly a <b>development and debugging tool</b>. They document and enforce your assumptions about program state, catching bugs early when the assumption is violated.</p>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">assert</span> condition                  <span class="cm"># basic form</span>
+<span class="kw">assert</span> condition, <span class="str">"error message"</span>  <span class="cm"># with custom message (recommended)</span></pre>
+<pre><span class="cm"># Basic assertion — must be positive</span>
+<span class="kw">def</span> <span class="fn">square_root</span>(n):
+    <span class="kw">assert</span> n >= <span class="num">0</span>, <span class="str">f"Input must be non-negative, got {n}"</span>
+    <span class="kw">return</span> n ** <span class="num">0.5</span>
+
+<span class="fn">print</span>(<span class="fn">square_root</span>(<span class="num">25</span>))    <span class="out"># 5.0</span>
+<span class="fn">print</span>(<span class="fn">square_root</span>(-<span class="num">4</span>))
+<span class="out"># AssertionError: Input must be non-negative, got -4</span>
+
+<span class="cm"># Asserting function postconditions</span>
+<span class="kw">def</span> <span class="fn">get_percentage</span>(score, total):
+    result = (score / total) * <span class="num">100</span>
+    <span class="kw">assert</span> <span class="num">0</span> <= result <= <span class="num">100</span>, <span class="str">f"Percentage out of range: {result}"</span>
+    <span class="kw">return</span> result
+
+<span class="cm"># Asserting type assumptions</span>
+<span class="kw">def</span> <span class="fn">process_list</span>(data):
+    <span class="kw">assert</span> <span class="fn">isinstance</span>(data, <span class="fn">list</span>), <span class="str">f"Expected list, got {type(data).__name__}"</span>
+    <span class="kw">assert</span> <span class="fn">len</span>(data) > <span class="num">0</span>, <span class="str">"List must not be empty"</span>
+    <span class="kw">return</span> [x * <span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> data]
+
+<span class="fn">process_list</span>(<span class="str">"hello"</span>)   <span class="out"># AssertionError: Expected list, got str</span></pre>
+    <div class="warn-box">⚠️ Assertions can be <b>globally disabled</b> by running Python with the <code>-O</code> (optimize) flag: <code>python -O script.py</code>. This means assertions should <b>never</b> be used for input validation in production code — use <code>if/raise</code> instead. Assertions are for catching programmer mistakes, not user mistakes.</div>
+  </div>
+
+  <!-- Q53: Assertions vs exception handling -->
+  <div class="card" id="q53">
+    <div class="q-label">Question 53</div>
+    <h2>Assertions vs exception handling — when to use each</h2>
+    <p>Both assertions and exceptions signal that something went wrong — but they serve completely different purposes and audiences.</p>
+    <table>
+      <tr><th>Aspect</th><th>assert</th><th>try-except / raise</th></tr>
+      <tr><td>Purpose</td><td>Catch <b>programmer mistakes</b> — violated internal assumptions</td><td>Handle <b>expected runtime conditions</b> — user input, I/O, network</td></tr>
+      <tr><td>Who is at fault?</td><td>The developer (bug in logic)</td><td>External factors (user, system, environment)</td></tr>
+      <tr><td>Can be disabled?</td><td>Yes — <code>python -O</code> removes all asserts</td><td>No — always active</td></tr>
+      <tr><td>Raises</td><td><code>AssertionError</code></td><td>Any specific exception class</td></tr>
+      <tr><td>Used in</td><td>Development, debugging, unit tests</td><td>Production code, user-facing programs</td></tr>
+      <tr><td>Recoverable?</td><td>Typically not — indicates a bug</td><td>Often yes — program can continue</td></tr>
+    </table>
+<pre><span class="cm"># ✅ USE assert — to verify internal programmer assumptions</span>
+<span class="kw">def</span> <span class="fn">binary_search</span>(arr, target):
+    <span class="kw">assert</span> arr == <span class="fn">sorted</span>(arr), <span class="str">"binary_search requires a sorted list"</span>
+    <span class="cm"># ... search logic ...</span>
+
+<span class="cm"># ✅ USE assert — in test/validation code</span>
+result = <span class="fn">calculate_discount</span>(<span class="num">1000</span>, <span class="num">10</span>)
+<span class="kw">assert</span> result == <span class="num">900</span>, <span class="str">f"Expected 900, got {result}"</span>
+
+<span class="cm"># ❌ NEVER use assert for user input validation in production</span>
+<span class="kw">def</span> <span class="fn">set_age_bad</span>(age):
+    <span class="kw">assert</span> age > <span class="num">0</span>, <span class="str">"Age must be positive"</span>   <span class="cm"># disabled by -O flag!</span>
+
+<span class="cm"># ✅ USE exception handling for user input and recoverable errors</span>
+<span class="kw">def</span> <span class="fn">set_age_good</span>(age):
+    <span class="kw">if</span> age <= <span class="num">0</span>:
+        <span class="kw">raise</span> ValueError(<span class="str">f"Age must be positive, got {age}"</span>)
+
+<span class="cm"># ✅ USE exception handling for external operations</span>
+<span class="kw">try</span>:
+    data = <span class="fn">fetch_from_api</span>(url)
+<span class="kw">except</span> ConnectionError:
+    <span class="fn">print</span>(<span class="str">"Network unavailable — using cached data"</span>)
+    data = <span class="fn">load_cache</span>()</pre>
+    <div class="success-box">✅ <b>Decision rule:</b> If the condition being checked <i>should never be False</i> given correct code → <code>assert</code>. If the condition <i>might reasonably be False</i> depending on external input or environment → <code>raise</code> with proper exception handling.</div>
+  </div>
+
+  <!-- Q54: What is OOP -->
+  <div class="card" id="q54">
+    <div class="q-label">Question 54</div>
+    <h2>What is Object-Oriented Programming? Explain the four pillars of OOP in Python.</h2>
+    <p><b>Object-Oriented Programming (OOP)</b> is a programming paradigm that organises code around <b>objects</b> — real-world entities that bundle together <b>data (attributes)</b> and <b>behaviour (methods)</b> into a single unit called a <b>class</b>. Instead of writing a long sequence of instructions, you model your program as a collection of interacting objects.</p>
+    <p>Python is a fully object-oriented language — even built-in types like <code>int</code>, <code>str</code>, and <code>list</code> are objects.</p>
+    <table>
+      <tr><th>Pillar</th><th>One-line definition</th><th>Keyword/tool in Python</th></tr>
+      <tr><td><b>Encapsulation</b></td><td>Bundle data + methods together; hide internal details</td><td>Classes, private/protected naming (<code>_</code>, <code>__</code>)</td></tr>
+      <tr><td><b>Inheritance</b></td><td>A child class reuses and extends a parent class</td><td><code>class Child(Parent):</code></td></tr>
+      <tr><td><b>Polymorphism</b></td><td>Same interface, different behaviour depending on object type</td><td>Method overriding, duck typing</td></tr>
+      <tr><td><b>Abstraction</b></td><td>Expose only what is necessary; hide complex implementation</td><td><code>ABC</code>, abstract methods, interfaces</td></tr>
+    </table>
+    <div class="syntax-label">Quick illustration</div>
+<pre><span class="kw">class</span> <span class="fn">Animal</span>:                          <span class="cm"># class = blueprint</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name):
+        self.name = name               <span class="cm"># attribute (Encapsulation)</span>
+
+    <span class="kw">def</span> <span class="fn">speak</span>(self):                   <span class="cm"># method (Polymorphism via overriding)</span>
+        <span class="kw">raise</span> NotImplementedError      <span class="cm"># Abstraction — force subclasses to implement</span>
+
+<span class="kw">class</span> <span class="fn">Dog</span>(<span class="fn">Animal</span>):                     <span class="cm"># Inheritance</span>
+    <span class="kw">def</span> <span class="fn">speak</span>(self):
+        <span class="kw">return</span> <span class="str">f"{self.name} says Woof!"</span>
+
+<span class="kw">class</span> <span class="fn">Cat</span>(<span class="fn">Animal</span>):
+    <span class="kw">def</span> <span class="fn">speak</span>(self):
+        <span class="kw">return</span> <span class="str">f"{self.name} says Meow!"</span>
+
+<span class="kw">for</span> pet <span class="kw">in</span> [<span class="fn">Dog</span>(<span class="str">"Rex"</span>), <span class="fn">Cat</span>(<span class="str">"Whiskers"</span>)]:
+    <span class="fn">print</span>(pet.<span class="fn">speak</span>())
+<span class="out"># Rex says Woof!
+# Whiskers says Meow!</span></pre>
+    <div class="info-box">💡 OOP benefits: <b>Reusability</b> (write once, inherit many times), <b>Modularity</b> (each class has a single responsibility), <b>Maintainability</b> (change one class without breaking others), and <b>Scalability</b> (easy to extend large codebases).</div>
+  </div>
+
+  <!-- Q55: Class vs Object -->
+  <div class="card" id="q55">
+    <div class="q-label">Question 55</div>
+    <h2>Differentiate between Class and Object with a real-life example.</h2>
+    <p>A <b>class</b> is a <em>blueprint</em> or template that defines the structure (attributes) and behaviour (methods) that its objects will have. A <b>object</b> (also called an <em>instance</em>) is a concrete entity created from that blueprint — it occupies memory and holds actual values.</p>
+    <table>
+      <tr><th>Aspect</th><th>Class</th><th>Object</th></tr>
+      <tr><td>What it is</td><td>Blueprint / template</td><td>Real-world instance in memory</td></tr>
+      <tr><td>Existence</td><td>Defined once</td><td>Created (instantiated) many times</td></tr>
+      <tr><td>Memory</td><td>No memory for data until instantiated</td><td>Allocates memory to hold its data</td></tr>
+      <tr><td>Analogy</td><td>Architectural drawing of a house</td><td>The actual house built from the drawing</td></tr>
+      <tr><td>Syntax</td><td><code>class Car:</code></td><td><code>my_car = Car("Toyota", "Red")</code></td></tr>
+    </table>
+    <div class="syntax-label">Real-life example — Smartphone</div>
+<pre><span class="cm"># CLASS — the blueprint for every smartphone</span>
+<span class="kw">class</span> <span class="fn">Smartphone</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, brand, model, storage_gb):
+        self.brand      = brand        <span class="cm"># attribute</span>
+        self.model      = model
+        self.storage_gb = storage_gb
+        self.is_on      = <span class="kw">False</span>
+
+    <span class="kw">def</span> <span class="fn">power_on</span>(self):               <span class="cm"># method</span>
+        self.is_on = <span class="kw">True</span>
+        <span class="fn">print</span>(<span class="str">f"{self.brand} {self.model} is ON"</span>)
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self):
+        <span class="kw">return</span> <span class="str">f"{self.brand} {self.model} ({self.storage_gb}GB)"</span>
+
+<span class="cm"># OBJECTS — two different smartphones built from the same blueprint</span>
+phone1 = <span class="fn">Smartphone</span>(<span class="str">"Samsung"</span>, <span class="str">"Galaxy S24"</span>, <span class="num">256</span>)
+phone2 = <span class="fn">Smartphone</span>(<span class="str">"Apple"</span>,   <span class="str">"iPhone 15"</span>,  <span class="num">128</span>)
+
+<span class="fn">print</span>(phone1)        <span class="out"># Samsung Galaxy S24 (256GB)</span>
+<span class="fn">print</span>(phone2)        <span class="out"># Apple iPhone 15 (128GB)</span>
+phone1.<span class="fn">power_on</span>()    <span class="out"># Samsung Galaxy S24 is ON</span>
+
+<span class="cm"># Each object has its own independent state</span>
+<span class="fn">print</span>(phone1.is_on)  <span class="out"># True</span>
+<span class="fn">print</span>(phone2.is_on)  <span class="out"># False</span></pre>
+    <div class="info-box">💡 Real-life parallel: <b>Class</b> = the design spec for the "iPhone 15" model. <b>Objects</b> = the millions of individual iPhone 15 units manufactured — each is the same model (class) but has its own storage, colour, and owner (state).</div>
+  </div>
+
+  <!-- Q56: __init__() -->
+  <div class="card" id="q56">
+    <div class="q-label">Question 56</div>
+    <h2>Why is <code>__init__()</code> used in Python?</h2>
+    <p><code>__init__()</code> is a special method (called a <b>dunder / magic method</b>) that Python calls <em>automatically</em> whenever a new object is created from a class. Its job is to <b>initialise the object's attributes</b> — setting the starting state of the new instance.</p>
+    <p>It is equivalent to a <b>constructor</b> in languages like Java or C++. The name stands for <em>initialise</em>. Python first creates the object in memory (via <code>__new__</code>) and then immediately calls <code>__init__</code> on it.</p>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="kw">class</span> <span class="fn">ClassName</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, param1, param2, ...):
+        self.attr1 = param1   <span class="cm"># instance attribute</span>
+        self.attr2 = param2</pre>
+<pre><span class="cm"># Without __init__ — attributes must be set manually after creation</span>
+<span class="kw">class</span> <span class="fn">StudentBasic</span>:
+    <span class="kw">pass</span>
+
+s = <span class="fn">StudentBasic</span>()
+s.name = <span class="str">"Riya"</span>          <span class="cm"># tedious and error-prone</span>
+s.grade = <span class="str">"A"</span>
+
+<span class="cm"># With __init__ — attributes set automatically on creation</span>
+<span class="kw">class</span> <span class="fn">Student</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, grade):
+        self.name  = name       <span class="cm"># initialised instantly</span>
+        self.grade = grade
+        self.passed = grade != <span class="str">"F"</span>   <span class="cm"># derived attribute</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(self):
+        status = <span class="str">"Pass"</span> <span class="kw">if</span> self.passed <span class="kw">else</span> <span class="str">"Fail"</span>
+        <span class="fn">print</span>(<span class="str">f"{self.name} | Grade: {self.grade} | {status}"</span>)
+
+s1 = <span class="fn">Student</span>(<span class="str">"Riya"</span>, <span class="str">"A"</span>)
+s2 = <span class="fn">Student</span>(<span class="str">"Arjun"</span>, <span class="str">"F"</span>)
+s1.<span class="fn">info</span>()    <span class="out"># Riya  | Grade: A | Pass</span>
+s2.<span class="fn">info</span>()    <span class="out"># Arjun | Grade: F | Fail</span></pre>
+    <div class="warn-box">⚠️ <b>self</b> is the first parameter of every instance method, including <code>__init__</code>. It refers to the current object being created or used. Python passes it automatically — you never supply it when calling the method.</div>
+    <div class="success-box">✅ Key points: (1) <code>__init__</code> is called automatically — you never call it directly. (2) It can have default parameter values. (3) It does <b>not</b> return anything (implicitly returns <code>None</code>). (4) Every object gets its own copy of instance attributes set inside <code>__init__</code>.</div>
+  </div>
+
+  <!-- Q57: Inheritance -->
+  <div class="card" id="q57">
+    <div class="q-label">Question 57</div>
+    <h2>What is Inheritance? List and briefly explain all types of inheritance supported in Python.</h2>
+    <p><b>Inheritance</b> is an OOP mechanism where a <b>child class (subclass)</b> acquires the attributes and methods of a <b>parent class (superclass)</b> automatically, without rewriting them. It promotes <b>code reuse</b> and models <em>is-a</em> relationships (a Dog <em>is-a</em> Animal).</p>
+    <table>
+      <tr><th>Type</th><th>Structure</th><th>Description</th></tr>
+      <tr><td><b>Single</b></td><td>A → B</td><td>One child inherits from one parent. The simplest and most common form.</td></tr>
+      <tr><td><b>Multiple</b></td><td>A, B → C</td><td>One child inherits from two or more parents. Python supports this; resolved via MRO (C3 linearisation).</td></tr>
+      <tr><td><b>Multilevel</b></td><td>A → B → C</td><td>A chain: grandparent → parent → child. Each level adds or overrides behaviour.</td></tr>
+      <tr><td><b>Hierarchical</b></td><td>A → B, A → C</td><td>One parent has multiple children. Each child extends the parent independently.</td></tr>
+      <tr><td><b>Hybrid</b></td><td>Mix of above</td><td>A combination of two or more types. Python handles it via MRO to avoid the diamond problem.</td></tr>
+    </table>
+<pre><span class="cm"># 1. Single Inheritance</span>
+<span class="kw">class</span> <span class="fn">Vehicle</span>:
+    <span class="kw">def</span> <span class="fn">start</span>(self): <span class="fn">print</span>(<span class="str">"Engine started"</span>)
+
+<span class="kw">class</span> <span class="fn">Car</span>(<span class="fn">Vehicle</span>):          <span class="cm"># Car inherits Vehicle</span>
+    <span class="kw">def</span> <span class="fn">drive</span>(self): <span class="fn">print</span>(<span class="str">"Car is driving"</span>)
+
+<span class="cm"># 2. Multiple Inheritance</span>
+<span class="kw">class</span> <span class="fn">Flyable</span>:
+    <span class="kw">def</span> <span class="fn">fly</span>(self): <span class="fn">print</span>(<span class="str">"Flying"</span>)
+
+<span class="kw">class</span> <span class="fn">Swimmable</span>:
+    <span class="kw">def</span> <span class="fn">swim</span>(self): <span class="fn">print</span>(<span class="str">"Swimming"</span>)
+
+<span class="kw">class</span> <span class="fn">Duck</span>(<span class="fn">Flyable</span>, <span class="fn">Swimmable</span>):  <span class="cm"># inherits both</span>
+    <span class="kw">pass</span>
+
+d = <span class="fn">Duck</span>()
+d.<span class="fn">fly</span>()    <span class="out"># Flying</span>
+d.<span class="fn">swim</span>()   <span class="out"># Swimming</span>
+
+<span class="cm"># 3. Multilevel Inheritance</span>
+<span class="kw">class</span> <span class="fn">Animal</span>:
+    <span class="kw">def</span> <span class="fn">breathe</span>(self): <span class="fn">print</span>(<span class="str">"Breathing"</span>)
+
+<span class="kw">class</span> <span class="fn">Mammal</span>(<span class="fn">Animal</span>):
+    <span class="kw">def</span> <span class="fn">feed_young</span>(self): <span class="fn">print</span>(<span class="str">"Feeding young"</span>)
+
+<span class="kw">class</span> <span class="fn">Human</span>(<span class="fn">Mammal</span>):          <span class="cm"># inherits Animal AND Mammal</span>
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="fn">print</span>(<span class="str">"Speaking"</span>)
+
+h = <span class="fn">Human</span>()
+h.<span class="fn">breathe</span>()     <span class="out"># Breathing   ← from Animal</span>
+h.<span class="fn">feed_young</span>()  <span class="out"># Feeding young ← from Mammal</span>
+
+<span class="cm"># 4. Hierarchical Inheritance</span>
+<span class="kw">class</span> <span class="fn">Shape</span>:
+    <span class="kw">def</span> <span class="fn">area</span>(self): <span class="kw">pass</span>
+
+<span class="kw">class</span> <span class="fn">Circle</span>(<span class="fn">Shape</span>): <span class="kw">pass</span>    <span class="cm"># one parent, two children</span>
+<span class="kw">class</span> <span class="fn">Square</span>(<span class="fn">Shape</span>): <span class="kw">pass</span></pre>
+    <div class="info-box">💡 Use <code>ClassName.__mro__</code> or <code>help(ClassName)</code> to inspect Python's Method Resolution Order — the sequence Python follows to find an attribute/method when multiple inheritance is involved.</div>
+  </div>
+
+  <!-- Q58: super() -->
+  <div class="card" id="q58">
+    <div class="q-label">Question 58</div>
+    <h2>Explain the use of <code>super()</code> in inheritance with example.</h2>
+    <p><code>super()</code> returns a <b>proxy object</b> that delegates method calls to the <b>parent (or sibling) class</b> in the MRO chain. It is primarily used to:</p>
+    <ul>
+      <li>Call the parent's <code>__init__</code> so the child does not have to duplicate initialisation code.</li>
+      <li>Extend (not fully replace) an overridden method — call the parent version, then add child-specific behaviour.</li>
+      <li>Ensure correct MRO traversal in multiple inheritance scenarios.</li>
+    </ul>
+    <div class="syntax-label">Syntax</div>
+<pre><span class="fn">super</span>().<span class="fn">method_name</span>(args)          <span class="cm"># Python 3 — no arguments needed</span>
+<span class="fn">super</span>(<span class="fn">ChildClass</span>, self).<span class="fn">method</span>()   <span class="cm"># explicit form (rarely needed)</span></pre>
+<pre><span class="kw">class</span> <span class="fn">Person</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, age):
+        self.name = name
+        self.age  = age
+        <span class="fn">print</span>(<span class="str">f"Person created: {self.name}"</span>)
+
+    <span class="kw">def</span> <span class="fn">introduce</span>(self):
+        <span class="kw">return</span> <span class="str">f"Hi, I'm {self.name}, age {self.age}"</span>
+
+<span class="kw">class</span> <span class="fn">Employee</span>(<span class="fn">Person</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, age, company, salary):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(name, age)    <span class="cm"># call Person's __init__ — no duplication</span>
+        self.company = company         <span class="cm"># add Employee-specific attributes</span>
+        self.salary  = salary
+        <span class="fn">print</span>(<span class="str">f"Employee created at {self.company}"</span>)
+
+    <span class="kw">def</span> <span class="fn">introduce</span>(self):
+        base = <span class="fn">super</span>().<span class="fn">introduce</span>()   <span class="cm"># reuse parent's introduce()</span>
+        <span class="kw">return</span> <span class="str">f"{base}, working at {self.company}"</span>
+
+emp = <span class="fn">Employee</span>(<span class="str">"Priya"</span>, <span class="num">28</span>, <span class="str">"TCS"</span>, <span class="num">80000</span>)
+<span class="out"># Person created: Priya
+# Employee created at TCS</span>
+<span class="fn">print</span>(emp.<span class="fn">introduce</span>())
+<span class="out"># Hi, I'm Priya, age 28, working at TCS</span></pre>
+<pre><span class="cm"># super() in multiple inheritance — respects MRO</span>
+<span class="kw">class</span> <span class="fn">A</span>:
+    <span class="kw">def</span> <span class="fn">greet</span>(self): <span class="fn">print</span>(<span class="str">"Hello from A"</span>)
+
+<span class="kw">class</span> <span class="fn">B</span>(<span class="fn">A</span>):
+    <span class="kw">def</span> <span class="fn">greet</span>(self):
+        <span class="fn">super</span>().<span class="fn">greet</span>()            <span class="cm"># calls A.greet()</span>
+        <span class="fn">print</span>(<span class="str">"Hello from B"</span>)
+
+<span class="kw">class</span> <span class="fn">C</span>(<span class="fn">B</span>):
+    <span class="kw">def</span> <span class="fn">greet</span>(self):
+        <span class="fn">super</span>().<span class="fn">greet</span>()            <span class="cm"># calls B.greet() → A.greet()</span>
+        <span class="fn">print</span>(<span class="str">"Hello from C"</span>)
+
+<span class="fn">C</span>().<span class="fn">greet</span>()
+<span class="out"># Hello from A
+# Hello from B
+# Hello from C</span></pre>
+    <div class="success-box">✅ Best practice: Always use <code>super()</code> instead of hard-coding the parent class name (e.g. <code>Person.__init__(self, ...)</code>). Hard-coding breaks in multiple inheritance; <code>super()</code> always follows the MRO correctly.</div>
+  </div>
+
+  <!-- Q59: Polymorphism -->
+  <div class="card" id="q59">
+    <div class="q-label">Question 59</div>
+    <h2>What is Polymorphism? Explain method overriding and duck typing in Python.</h2>
+    <p><b>Polymorphism</b> (Greek: <em>many forms</em>) means the ability to use a <b>single interface to represent different types</b>. The same method name or operator behaves differently depending on the object it acts on. Python achieves polymorphism mainly through <b>method overriding</b> and <b>duck typing</b>.</p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>Method Overriding</h4>
+        <p>A child class redefines a method that already exists in the parent class. When the method is called on a child object, Python uses the child's version, not the parent's.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Duck Typing</h4>
+        <p>"If it walks like a duck and quacks like a duck, it's a duck." Python doesn't care about the type of the object — only whether it has the required method or attribute.</p>
+      </div>
+    </div>
+    <div class="syntax-label">Method Overriding example</div>
+<pre><span class="kw">class</span> <span class="fn">Shape</span>:
+    <span class="kw">def</span> <span class="fn">area</span>(self):
+        <span class="kw">return</span> <span class="num">0</span>                       <span class="cm"># default — overridden by each child</span>
+
+<span class="kw">class</span> <span class="fn">Circle</span>(<span class="fn">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, radius):
+        self.radius = radius
+    <span class="kw">def</span> <span class="fn">area</span>(self):                    <span class="cm"># OVERRIDE</span>
+        <span class="kw">return</span> <span class="num">3.14</span> * self.radius ** <span class="num">2</span>
+
+<span class="kw">class</span> <span class="fn">Rectangle</span>(<span class="fn">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, w, h):
+        self.w, self.h = w, h
+    <span class="kw">def</span> <span class="fn">area</span>(self):                    <span class="cm"># OVERRIDE</span>
+        <span class="kw">return</span> self.w * self.h
+
+shapes = [<span class="fn">Circle</span>(<span class="num">5</span>), <span class="fn">Rectangle</span>(<span class="num">4</span>, <span class="num">6</span>), <span class="fn">Shape</span>()]
+<span class="kw">for</span> s <span class="kw">in</span> shapes:
+    <span class="fn">print</span>(s.<span class="fn">area</span>())       <span class="cm"># same call → different result</span>
+<span class="out"># 78.5
+# 24
+# 0</span></pre>
+    <div class="syntax-label">Duck Typing example</div>
+<pre><span class="kw">class</span> <span class="fn">Dog</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="kw">return</span> <span class="str">"Woof!"</span>
+
+<span class="kw">class</span> <span class="fn">Cat</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="kw">return</span> <span class="str">"Meow!"</span>
+
+<span class="kw">class</span> <span class="fn">Robot</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="kw">return</span> <span class="str">"Beep boop!"</span>
+
+<span class="cm"># No shared parent class — Python only checks: does it have speak()?</span>
+<span class="kw">def</span> <span class="fn">make_it_speak</span>(thing):
+    <span class="fn">print</span>(thing.<span class="fn">speak</span>())      <span class="cm"># duck typing — works for any object with speak()</span>
+
+<span class="kw">for</span> obj <span class="kw">in</span> [<span class="fn">Dog</span>(), <span class="fn">Cat</span>(), <span class="fn">Robot</span>()]:
+    <span class="fn">make_it_speak</span>(obj)
+<span class="out"># Woof!
+# Meow!
+# Beep boop!</span></pre>
+    <div class="info-box">💡 Python does <b>not</b> support <em>method overloading</em> (same method name, different parameter types) the way Java/C++ do. Instead, Python uses default arguments and <code>*args</code>/<code>**kwargs</code> to achieve the same effect in a single method definition.</div>
+  </div>
+
+  <!-- Q60: Encapsulation -->
+  <div class="card" id="q60">
+    <div class="q-label">Question 60</div>
+    <h2>What is Encapsulation? How is Information Hiding achieved in Python?</h2>
+    <p><b>Encapsulation</b> is the OOP principle of <b>bundling data (attributes) and the methods that operate on that data together inside a class</b>, while <b>restricting direct access</b> to some of the object's internal details. This protects the internal state from unintended modification and exposes only a controlled interface to the outside world.</p>
+    <p>Python does not enforce access control at the language level (unlike Java's <code>private</code> keyword). Instead it uses a <b>naming convention</b> to signal the intended visibility:</p>
+    <table>
+      <tr><th>Convention</th><th>Prefix</th><th>Meaning</th><th>Accessible from outside?</th></tr>
+      <tr><td>Public</td><td><code>name</code></td><td>Freely accessible — default</td><td>✅ Yes</td></tr>
+      <tr><td>Protected</td><td><code>_name</code> (single underscore)</td><td>Internal use / subclasses — convention only</td><td>⚠️ Technically yes, but discouraged</td></tr>
+      <tr><td>Private</td><td><code>__name</code> (double underscore)</td><td>Name-mangled — strongly discouraged outside class</td><td>❌ Not directly (name is mangled)</td></tr>
+    </table>
+<pre><span class="kw">class</span> <span class="fn">BankAccount</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, owner, balance):
+        self.owner    = owner          <span class="cm"># public</span>
+        self._bank    = <span class="str">"SBI"</span>         <span class="cm"># protected — internal use</span>
+        self.__balance = balance       <span class="cm"># private — name mangled to _BankAccount__balance</span>
+
+    <span class="cm"># Getter — controlled read access</span>
+    <span class="kw">def</span> <span class="fn">get_balance</span>(self):
+        <span class="kw">return</span> self.__balance
+
+    <span class="cm"># Setter — controlled write access with validation</span>
+    <span class="kw">def</span> <span class="fn">deposit</span>(self, amount):
+        <span class="kw">if</span> amount <= <span class="num">0</span>:
+            <span class="kw">raise</span> ValueError(<span class="str">"Deposit must be positive"</span>)
+        self.__balance += amount
+
+    <span class="kw">def</span> <span class="fn">withdraw</span>(self, amount):
+        <span class="kw">if</span> amount > self.__balance:
+            <span class="kw">raise</span> ValueError(<span class="str">"Insufficient funds"</span>)
+        self.__balance -= amount
+
+acc = <span class="fn">BankAccount</span>(<span class="str">"Aisha"</span>, <span class="num">5000</span>)
+<span class="fn">print</span>(acc.owner)             <span class="out"># Aisha  ← public, fine</span>
+<span class="fn">print</span>(acc.<span class="fn">get_balance</span>())     <span class="out"># 5000   ← via getter, fine</span>
+acc.<span class="fn">deposit</span>(<span class="num">1000</span>)
+<span class="fn">print</span>(acc.<span class="fn">get_balance</span>())     <span class="out"># 6000</span>
+
+<span class="fn">print</span>(acc.__balance)         <span class="out"># AttributeError — cannot access directly</span>
+<span class="fn">print</span>(acc._BankAccount__balance)  <span class="out"># 6000 ← mangled name (avoid in real code)</span></pre>
+    <div class="success-box">✅ Python also supports <b>properties</b> (<code>@property</code>, <code>@setter</code>) as a cleaner Pythonic alternative to manual getter/setter methods — they let you write <code>acc.balance</code> while still running validation logic behind the scenes.</div>
+  </div>
+
+  <!-- Q61: Name Mangling -->
+  <div class="card" id="q61">
+    <div class="q-label">Question 61</div>
+    <h2>Explain Name Mangling in Python — syntax, purpose, and why it is used.</h2>
+    <p><b>Name mangling</b> is Python's mechanism for making an attribute <em>harder</em> to accidentally access or override from outside the class or from subclasses. When you prefix an attribute or method name with <b>two leading underscores</b> (and at most one trailing underscore), Python <em>automatically renames</em> it at compile time by prepending <code>_ClassName</code>.</p>
+    <div class="syntax-label">The transformation rule</div>
+<pre><span class="cm"># What you write inside the class:</span>
+self.__secret
+
+<span class="cm"># What Python actually stores it as:</span>
+self._ClassName__secret</pre>
+    <div class="syntax-label">Example demonstrating name mangling</div>
+<pre><span class="kw">class</span> <span class="fn">Counter</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.__count = <span class="num">0</span>          <span class="cm"># stored as _Counter__count</span>
+
+    <span class="kw">def</span> <span class="fn">increment</span>(self):
+        self.__count += <span class="num">1</span>
+
+    <span class="kw">def</span> <span class="fn">get_count</span>(self):
+        <span class="kw">return</span> self.__count
+
+c = <span class="fn">Counter</span>()
+c.<span class="fn">increment</span>()
+c.<span class="fn">increment</span>()
+<span class="fn">print</span>(c.<span class="fn">get_count</span>())      <span class="out"># 2  ← correct way</span>
+
+<span class="fn">print</span>(c.__count)          <span class="out"># AttributeError: 'Counter' object has no attribute '__count'</span>
+<span class="fn">print</span>(c._Counter__count)  <span class="out"># 2  ← mangled name still accessible (for debugging)</span>
+
+<span class="cm"># Name mangling prevents accidental override in subclasses</span>
+<span class="kw">class</span> <span class="fn">SubCounter</span>(<span class="fn">Counter</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        <span class="fn">super</span>().<span class="fn">__init__</span>()
+        self.__count = <span class="num">99</span>   <span class="cm"># stored as _SubCounter__count — DIFFERENT attribute!</span>
+
+sc = <span class="fn">SubCounter</span>()
+sc.<span class="fn">increment</span>()           <span class="cm"># modifies _Counter__count, not _SubCounter__count</span>
+<span class="fn">print</span>(sc.<span class="fn">get_count</span>())    <span class="out"># 1  ← Counter's __count, unaffected by SubCounter's __count</span>
+<span class="fn">print</span>(sc._SubCounter__count)  <span class="out"># 99</span></pre>
+    <table>
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><b>Syntax</b></td><td><code>__name</code> (2 leading underscores, max 1 trailing underscore)</td></tr>
+      <tr><td><b>Transformed to</b></td><td><code>_ClassName__name</code> by Python at compile time</td></tr>
+      <tr><td><b>Primary purpose</b></td><td>Prevent accidental <b>attribute clash</b> in subclasses (not true privacy)</td></tr>
+      <tr><td><b>Still accessible?</b></td><td>Yes — via the mangled name <code>_ClassName__attr</code> (useful for debugging)</td></tr>
+      <tr><td><b>Does NOT apply to</b></td><td>Names with 2 trailing underscores too: <code>__init__</code>, <code>__str__</code> are dunder methods, not mangled</td></tr>
+    </table>
+    <div class="warn-box">⚠️ Name mangling is <b>not encryption or true access control</b>. A determined programmer can always access <code>obj._ClassName__attr</code>. Python's philosophy is "we're all consenting adults here" — conventions signal intent, but nothing is truly private.</div>
+    <div class="info-box">💡 Use <code>dir(obj)</code> to see all attributes of an object including mangled names — this is useful during debugging to discover the actual stored name.</div>
+  </div>
+
+  <div style="text-align:center; padding: 20px 0 10px; color: #9ca3af; font-size: 13px;">
+    Python Study Notes — Questions 1–61 | Generated by Claude
+  </div>
+
+</div>
+</body>
+</html>
